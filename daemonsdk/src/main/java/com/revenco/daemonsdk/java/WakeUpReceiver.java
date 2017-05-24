@@ -9,7 +9,7 @@ public class WakeUpReceiver extends BroadcastReceiver {
     /**
      * 向 WakeUpReceiver 发送带有此 Action 的广播, 即可在不需要服务运行的时候取消 Job / Alarm / Subscription.
      */
-    protected static final String ACTION_CANCEL_JOB_ALARM_SUB = "com.revenco.daemonlibrary.CANCEL_JOB_ALARM_SUB";
+    protected static final String ACTION_CANCEL_JOB_ALARM_SUB = "com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB";
 
     /**
      * 监听 8 种系统广播 :

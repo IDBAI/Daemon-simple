@@ -1,11 +1,11 @@
-package com.revenco.daemon_simple;
+package com.revenco.daemonsdk.assistant;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-public class addService2 extends Service {
-    public addService2() {
+public class assistantService2 extends Service {
+    public assistantService2() {
     }
 
     @Override

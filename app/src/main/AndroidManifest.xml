@@ -22,26 +22,13 @@
             android:name=".TraceServiceImpl"
             android:enabled="true"
             android:exported="true"
-
             android:process=":process1"/>
-        <service
-            android:name=".addService2"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":process2">
-        </service>
 
         <receiver
-            android:name=".addReceiver1"
+            android:name=".assistantReceiver1"
             android:enabled="true"
             android:exported="true"
             android:process=":process1">
-        </receiver>
-        <receiver
-            android:name=".addReceiver2"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":process2">
         </receiver>
     </application>
 
