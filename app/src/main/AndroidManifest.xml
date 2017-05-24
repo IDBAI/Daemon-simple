@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.revenco.daemon_simple">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".TraceServiceImpl"
+            android:enabled="true"
+            android:exported="true"
+
+            android:process=":process1"/>
+        <service
+            android:name=".addService2"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":process2">
+        </service>
+
+        <receiver
+            android:name=".addReceiver1"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":process1">
+        </receiver>
+        <receiver
+            android:name=".addReceiver2"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":process2">
+        </receiver>
+    </application>
+
+</manifest>
