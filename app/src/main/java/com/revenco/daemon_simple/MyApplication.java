@@ -20,7 +20,8 @@ public class MyApplication extends Application {
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
-        String processName = "com.revenco.daemon_simple:process1";
+        //主要的业务逻辑进程
+        String processName = "com.revenco.daemon_simple:business";
         String serviceName = TraceServiceImpl.class.getCanonicalName();
         String receiveName = assistantReceiver1.class.getCanonicalName();
         DaemonManager.INSTANCE.init(context, processName, serviceName, receiveName);

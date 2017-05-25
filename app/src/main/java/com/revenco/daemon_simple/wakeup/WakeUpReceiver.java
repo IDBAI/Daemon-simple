@@ -28,9 +28,8 @@ public class WakeUpReceiver extends BroadcastReceiver {
         }
         //动态注册屏幕解锁开锁ACTION
         try {
-            Log.e(TAG, "WakeUpReceiver --> 广播启动业务服务！");
+            Log.e(TAG, "ACTION =  " + intent.getAction() + " --> 唤醒业务服务！");
             context.startService(new Intent(context, TraceServiceImpl.class));
-            Log.e(TAG, "ACTION = " + intent.getAction());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -22,13 +22,13 @@
             android:name=".TraceServiceImpl"
             android:enabled="true"
             android:exported="true"
-            android:process=":process1"/>
+            android:process=":business"/>
 
         <receiver
             android:name=".assistantReceiver1"
             android:enabled="true"
             android:exported="true"
-            android:process=":process1">
+            android:process=":business">
         </receiver>
         <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________start-->
         <receiver
