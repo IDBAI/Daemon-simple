@@ -1,15 +1,19 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemon_simple.wakeup;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.revenco.daemon_simple.TraceServiceImpl;
+import com.revenco.daemonsdk.java.WatchDogService;
+
 public class WakeUpReceiver extends BroadcastReceiver {
     /**
      * 向 WakeUpReceiver 发送带有此 Action 的广播, 即可在不需要服务运行的时候取消 Job / Alarm / Subscription.
      */
     protected static final String ACTION_CANCEL_JOB_ALARM_SUB = "com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB";
+    private static final String TAG = "WakeUpReceiver";
 
     /**
      * 监听 8 种系统广播 :
@@ -25,24 +29,22 @@ public class WakeUpReceiver extends BroadcastReceiver {
             WatchDogService.cancelJobAlarmSub();
             return;
         }
-        if (!DaemonEnv.sInitialized)
-            return;
         try {
-            Log.e("WatchDogService", "WakeUpReceiver --> 广播启动业务服务！");
-            context.startService(new Intent(context, DaemonEnv.sServiceClass));
-        } catch (Exception ignored) {
+            Log.e(TAG, "WakeUpReceiver --> 广播启动业务服务！");
+            context.startService(new Intent(context, TraceServiceImpl.class));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public static class WakeUpAutoStartReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!DaemonEnv.sInitialized)
-                return;
             try {
-                Log.e("WatchDogService", "WakeUpAutoStartReceiver --> 广播启动业务服务！");
-                context.startService(new Intent(context, DaemonEnv.sServiceClass));
-            } catch (Exception ignored) {
+                Log.e(TAG, "WakeUpAutoStartReceiver --> 广播启动业务服务！");
+                context.startService(new Intent(context, TraceServiceImpl.class));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

@@ -30,6 +30,34 @@
             android:exported="true"
             android:process=":process1">
         </receiver>
+        <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________start-->
+        <receiver
+            android:name=".wakeup.WakeUpReceiver"
+            android:process=":watch">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".wakeup.WakeUpReceiver$WakeUpAutoStartReceiver"
+            android:process=":watch">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________end-->
+
     </application>
 
 </manifest>
