@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.revenco.daemonsdk.Constant;
+
 public abstract class AbsWorkService extends Service {
     private static final String TAG = "AbsWorkService";
     protected boolean mFirstStarted = true;
@@ -18,7 +20,7 @@ public abstract class AbsWorkService extends Service {
     public static void cancelJobAlarmSub() {
         if (!DaemonEnv.sInitialized)
             return;
-        DaemonEnv.sApp.sendBroadcast(new Intent(WakeUpReceiver.ACTION_CANCEL_JOB_ALARM_SUB));
+        DaemonEnv.sApp.sendBroadcast(new Intent(Constant.ACTION_CANCEL_JOB_ALARM_SUB));
     }
 
     /**

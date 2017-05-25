@@ -6,14 +6,14 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.revenco.daemon_simple.TraceServiceImpl;
+import com.revenco.daemonsdk.Constant;
 import com.revenco.daemonsdk.java.WatchDogService;
 
 public class WakeUpReceiver extends BroadcastReceiver {
     /**
      * 向 WakeUpReceiver 发送带有此 Action 的广播, 即可在不需要服务运行的时候取消 Job / Alarm / Subscription.
      */
-    protected static final String ACTION_CANCEL_JOB_ALARM_SUB = "com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB";
-    private static final String TAG = "WakeUpReceiver";
+   private static final String TAG = "WakeUpReceiver";
 
     /**
      * 监听 8 种系统广播 :
@@ -25,7 +25,7 @@ public class WakeUpReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent != null && ACTION_CANCEL_JOB_ALARM_SUB.equals(intent.getAction())) {
+        if (intent != null && Constant.ACTION_CANCEL_JOB_ALARM_SUB.equals(intent.getAction())) {
             WatchDogService.cancelJobAlarmSub();
             return;
         }
