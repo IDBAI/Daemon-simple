@@ -10,10 +10,7 @@ import com.revenco.daemonsdk.Constant;
 import com.revenco.daemonsdk.java.WatchDogService;
 
 public class WakeUpReceiver extends BroadcastReceiver {
-    /**
-     * 向 WakeUpReceiver 发送带有此 Action 的广播, 即可在不需要服务运行的时候取消 Job / Alarm / Subscription.
-     */
-   private static final String TAG = "WakeUpReceiver";
+    private static final String TAG = "WakeUpReceiver";
 
     /**
      * 监听 8 种系统广播 :
@@ -29,23 +26,13 @@ public class WakeUpReceiver extends BroadcastReceiver {
             WatchDogService.cancelJobAlarmSub();
             return;
         }
+        //动态注册屏幕解锁开锁ACTION
         try {
             Log.e(TAG, "WakeUpReceiver --> 广播启动业务服务！");
             context.startService(new Intent(context, TraceServiceImpl.class));
+            Log.e(TAG, "ACTION = " + intent.getAction());
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public static class WakeUpAutoStartReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            try {
-                Log.e(TAG, "WakeUpAutoStartReceiver --> 广播启动业务服务！");
-                context.startService(new Intent(context, TraceServiceImpl.class));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }

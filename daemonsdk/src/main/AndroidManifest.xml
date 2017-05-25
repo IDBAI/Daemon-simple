@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.revenco.daemonsdk">
 
@@ -7,8 +8,7 @@
 
     <application android:label="@string/app_name">
 
-
-        <!--<service android:name=".java.AbsWorkService$WorkNotificationService"/>-->
+        <!-- <service android:name=".java.AbsWorkService$WorkNotificationService"/> -->
 
         <service
             android:name=".java.JobSchedulerService"
@@ -16,15 +16,13 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":watch"/>
-
         <service
             android:name=".java.WatchDogService"
             android:process=":watch"/>
 
-        <!--<service-->
-        <!--android:name=".java.WatchDogService$WatchDogNotificationService"-->
-        <!--android:process=":watch"/>-->
-
+        <!-- <service -->
+        <!-- android:name=".java.WatchDogService$WatchDogNotificationService" -->
+        <!-- android:process=":watch"/> -->
 
         <service
             android:name=".assistant.assistantService2"
@@ -33,7 +31,6 @@
             android:process=":assistant">
         </service>
 
-
         <receiver
             android:name=".assistant.assistantReceiver2"
             android:enabled="true"
@@ -41,7 +38,11 @@
             android:process=":assistant">
         </receiver>
 
-
+        <activity
+            android:name=".java.TransParentActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+        </activity>
     </application>
 
 </manifest>

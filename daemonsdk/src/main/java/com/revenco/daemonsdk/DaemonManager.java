@@ -1,10 +1,12 @@
 package com.revenco.daemonsdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.revenco.daemonsdk.assistant.assistantReceiver2;
 import com.revenco.daemonsdk.assistant.assistantService2;
+import com.revenco.daemonsdk.java.TransParentActivity;
 import com.revenco.daemonsdk.natives.DaemonClient;
 import com.revenco.daemonsdk.natives.DaemonConfigurations;
 
@@ -42,6 +44,15 @@ public class DaemonManager {
                 assistantReceiver2.class.getCanonicalName());
         DaemonConfigurations.DaemonListener listener = new MyDaemonListener();
         return new DaemonConfigurations(configuration1, configuration2, listener);
+    }
+
+    public void startTransParentAct(Context context) {
+        Intent intent = new Intent(context, TransParentActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    public void destroyTransParent(Context context) {
     }
 
     class MyDaemonListener implements DaemonConfigurations.DaemonListener {

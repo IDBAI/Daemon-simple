@@ -5,14 +5,20 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.revenco.daemonsdk.DaemonManager;
+
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.Flowable;
 import io.reactivex.disposables.Disposable;
@@ -22,6 +28,8 @@ public class WatchDogService extends Service {
     private static final String TAG = "WatchDogService";
     protected static Disposable sDisposable;
     protected static PendingIntent sPendingIntent;
+    private ScreenStatusReverive screenStatusReverive;
+    private AtomicBoolean isRegistBroad = new AtomicBoolean(false);
 
     /**
      * 用于在不需要服务运行的时候取消 Job / Alarm / Subscription.
@@ -52,6 +60,7 @@ public class WatchDogService extends Service {
      * 守护服务，运行在:watch子进程中
      */
     protected final int onStart(Intent intent, int flags, int startId) {
+        registBroadcast(this.getApplicationContext());
         if (!DaemonEnv.sInitialized)
             return START_STICKY;
         if (sDisposable != null && !sDisposable.isDisposed())
@@ -106,13 +115,11 @@ public class WatchDogService extends Service {
 
     @Override
     public final int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e(TAG, "看门狗服务启动！");
         return onStart(intent, flags, startId);
     }
 
     @Override
     public final IBinder onBind(Intent intent) {
-        Log.e(TAG, "看门狗服务绑定！");
         onStart(intent, 0, 0);
         return null;
     }
@@ -144,25 +151,42 @@ public class WatchDogService extends Service {
     @Override
     public void onDestroy() {
         onEnd(null);
+        unRegistBroadcast(this.getApplicationContext());
     }
-    /**
-     * 此类会导致状态栏通知图标显示闪烁问题，给用户体验非常差！！放弃使用
-     */
-//    public static class WatchDogNotificationService extends Service {
-//        /**
-//         * 利用漏洞在 API Level 18 及以上的 Android 系统中，启动前台服务而不显示通知
-//         * 运行在:watch子进程中
-//         */
-//        @Override
-//        public int onStartCommand(Intent intent, int flags, int startId) {
-//            startForeground(NotifyHelper.NOTIFY_ID, NotifyHelper.INSTANCE.getForgroundNotification(this));
-//            stopSelf();
-//            return START_STICKY;
-//        }
-//
-//        @Override
-//        public IBinder onBind(Intent intent) {
-//            return null;
-//        }
-//    }
+
+    private void registBroadcast(Context context) {
+        if (!isRegistBroad.get()) {
+            if (screenStatusReverive == null)
+                screenStatusReverive = new ScreenStatusReverive();
+            context.registerReceiver(screenStatusReverive, getFilter());
+            isRegistBroad.set(true);
+        }
+    }
+
+    private void unRegistBroadcast(Context context) {
+        if (isRegistBroad.get()) {
+            if (screenStatusReverive != null)
+                context.unregisterReceiver(screenStatusReverive);
+            isRegistBroad.set(false);
+        }
+    }
+
+    public IntentFilter getFilter() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        return filter;
+    }
+
+    static class ScreenStatusReverive extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                switch (intent.getAction()) {
+                    case Intent.ACTION_SCREEN_OFF:
+                        DaemonManager.INSTANCE.startTransParentAct(context);
+                        break;
+                }
+            }
+        }
+    }
 }

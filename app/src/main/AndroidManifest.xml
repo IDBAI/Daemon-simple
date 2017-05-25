@@ -39,12 +39,11 @@
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
                 <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
+                <action android:name="com.revenco.daemonsdk.java.ACTION_REGIST_SCREEN_BROADCAST"/>
             </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".wakeup.WakeUpReceiver$WakeUpAutoStartReceiver"
-            android:process=":watch">
+            <intent-filter android:priority="90000">
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
@@ -56,6 +55,8 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+
+
         <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________end-->
 
     </application>
