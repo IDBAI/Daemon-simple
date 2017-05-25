@@ -1,9 +1,11 @@
 package com.revenco.daemonsdk.java;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -69,27 +71,13 @@ public abstract class AbsWorkService extends Service {
         }
         if (mFirstStarted) {
             mFirstStarted = false;
-            //启动前台服务而不显示通知的漏洞已在 API Level 25 修复，大快人心！
-//            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
-////                //利用漏洞在 API Level 17 及以下的 Android 系统中，启动前台服务而不显示通知
-//            startForeground(NotifyHelper.NOTIFY_ID, NotifyHelper.INSTANCE.getForgroundNotification(this));
-//            //利用漏洞在 API Level 18 及以上的 Android 系统中，启动前台服务而不显示通知
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-//                try {
-//                    startService(new Intent(getApplication(), WorkNotificationService.class));
-//                } catch (Exception ignored) {
-//                }
-//            }
-            //启动前台服务，在状态栏提示用户非常重要的服务
-//            setupNotify();
+            //17以下不会显示在通知栏
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                startForeground(1000, new Notification());
             getPackageManager().setComponentEnabledSetting(new ComponentName(getPackageName(), WatchDogService.class.getName()),
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
         }
         return START_STICKY;
-    }
-
-    private void setupNotify() {
-        startForeground(NotifyHelper.NOTIFY_ID, NotifyHelper.INSTANCE.getForgroundNotification(this));
     }
 
     void startService(Intent intent, int flags, int startId) {
@@ -129,7 +117,6 @@ public abstract class AbsWorkService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.w(TAG, "工作服务绑定");
         onStart(intent, 0, 0);
         return onBind(intent, null);
     }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,9 +15,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * 屏幕锁屏之后，启动这个全屏透明的act，来防止app被系统kill
+ * 屏幕锁屏之后，启动这个一个像素点的透明的act，来防止app被系统kill，
+ * 启动模式为 singleTask ，防止创建多个
+ * 主题是：android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+ * 才能达到透明的效果！
  */
 public class TransParentActivity extends Activity {
+    private static final String TAG = "TransParentActivity";
     private ScreenStatusReverive screenStatusReverive;
 
     @Override
@@ -27,8 +32,8 @@ public class TransParentActivity extends Activity {
         WindowManager.LayoutParams params = window.getAttributes();
         params.x = 0;
         params.y = 0;
-        params.height = WindowManager.LayoutParams.MATCH_PARENT;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
+        params.height = 1;
+        params.width = 1;
         window.setAttributes(params);
         View decorView = window.getDecorView();
         if (decorView != null) {
@@ -37,6 +42,7 @@ public class TransParentActivity extends Activity {
             decorView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+                    Log.e(TAG, "用户触摸，结束透明act");
                     finish();
                     return false;
                 }
@@ -64,7 +70,6 @@ public class TransParentActivity extends Activity {
 
     public IntentFilter getFilter() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_ON);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         return filter;
     }
@@ -75,9 +80,8 @@ public class TransParentActivity extends Activity {
             if (intent != null) {
                 switch (intent.getAction()) {
                     case Intent.ACTION_USER_PRESENT:
+                        Log.e(TAG, "解锁了，结束透明act");
                         finish();
-                        break;
-                    case Intent.ACTION_SCREEN_ON:
                         break;
                 }
             }

@@ -1,6 +1,7 @@
 package com.revenco.daemonsdk.java;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.job.JobInfo;
@@ -13,7 +14,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.revenco.daemonsdk.DaemonManager;
 
@@ -65,16 +65,9 @@ public class WatchDogService extends Service {
             return START_STICKY;
         if (sDisposable != null && !sDisposable.isDisposed())
             return START_STICKY;
-        //启动前台服务，在状态栏提示用户非常重要的服务
-//        setupNotify();
-//        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
-//            startForeground(NotifyHelper.NOTIFY_ID, NotifyHelper.INSTANCE.getForgroundNotification(this));
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-//                try {
-//                    startService(new Intent(DaemonEnv.sApp, WatchDogNotificationService.class));
-//                } catch (Exception ignored) {
-//                }
-//        }
+        //17以下不会显示在通知栏
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1)
+            startForeground(1000, new Notification());
         //定时检查 AbsWorkService 是否在运行，如果不在运行就把它拉起来
         //Android 5.0+ 使用 JobScheduler，效果比 AlarmManager 好
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

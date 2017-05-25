@@ -44,7 +44,7 @@ public class TraceServiceImpl extends AbsWorkService {
     public void startWork(Intent intent, int flags, int startId) {
         System.out.println("检查磁盘中是否有上次销毁时保存的数据");
         sDisposable = Flowable
-                .interval(3, TimeUnit.SECONDS)
+                .interval(10, TimeUnit.SECONDS)
                 //取消任务时取消定时唤醒
                 .doOnTerminate(new Action() {
                     @Override
@@ -55,7 +55,7 @@ public class TraceServiceImpl extends AbsWorkService {
                 }).subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long count) throws Exception {
-                        System.out.println("每 3 秒采集一次数据... count = " + count);
+                        System.out.println("每 10 秒采集一次数据... count = " + count);
                         if (count > 0 && count % 18 == 0)
                             System.out.println("保存数据到磁盘。 saveCount = " + (count / 18 - 1));
                     }

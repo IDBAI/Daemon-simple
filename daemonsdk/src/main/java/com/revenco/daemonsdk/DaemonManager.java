@@ -47,6 +47,7 @@ public class DaemonManager {
     }
 
     public void startTransParentAct(Context context) {
+        Log.e(TAG, "屏幕上锁了，启动透明act");
         Intent intent = new Intent(context, TransParentActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME | Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
