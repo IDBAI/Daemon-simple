@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.services;
 
 import android.app.Notification;
 import android.app.Service;
@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.revenco.daemonsdk.Constant;
 
@@ -110,7 +109,6 @@ public abstract class AbsWorkService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.w(TAG, "工作服务启动");
         return onStart(intent, flags, startId);
     }
 
@@ -150,23 +148,4 @@ public abstract class AbsWorkService extends Service {
     public void onDestroy() {
         onEnd(null);
     }
-    /**
-     * 此类会导致状态栏通知图标显示闪烁问题，给用户体验非常差！！放弃使用
-     */
-//    public static class WorkNotificationService extends Service {
-//        /**
-//         * 利用漏洞在 API Level 18 及以上的 Android 系统中，启动前台服务而不显示通知
-//         */
-//        @Override
-//        public int onStartCommand(Intent intent, int flags, int startId) {
-//            startForeground(NotifyHelper.NOTIFY_ID, NotifyHelper.INSTANCE.getForgroundNotification(this));
-//            stopSelf();
-//            return START_STICKY;
-//        }
-//
-//        @Override
-//        public IBinder onBind(Intent intent) {
-//            return null;
-//        }
-//    }
 }

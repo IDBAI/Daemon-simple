@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.assistant;
+package com.revenco.daemonsdk.natives.assistant;
 
 import android.app.Service;
 import android.content.Intent;

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.revenco.daemonsdk.assistant.assistantReceiver2;
-import com.revenco.daemonsdk.assistant.assistantService2;
-import com.revenco.daemonsdk.java.TransParentActivity;
+import com.revenco.daemonsdk.natives.assistant.assistantReceiver2;
+import com.revenco.daemonsdk.natives.assistant.assistantService2;
+import com.revenco.daemonsdk.java.activitys.TransParentActivity;
 import com.revenco.daemonsdk.natives.DaemonClient;
 import com.revenco.daemonsdk.natives.DaemonConfigurations;
 

@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.accounts;
 
 import android.accounts.AccountManager;
 import android.content.Context;

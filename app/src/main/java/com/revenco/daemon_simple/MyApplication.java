@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.revenco.daemonsdk.DaemonManager;
-import com.revenco.daemonsdk.java.DaemonEnv;
+import com.revenco.daemonsdk.java.services.DaemonEnv;
 
 /**
  * <p>PROJECT : Daemon-simple</p>

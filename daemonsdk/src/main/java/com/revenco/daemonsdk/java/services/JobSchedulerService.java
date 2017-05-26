@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.services;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;

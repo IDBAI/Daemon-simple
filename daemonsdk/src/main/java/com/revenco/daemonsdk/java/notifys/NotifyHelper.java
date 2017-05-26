@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.notifys;
 
 import android.app.Notification;
 import android.content.Context;
@@ -16,7 +16,6 @@ import com.revenco.daemonsdk.R;
 public class NotifyHelper {
     public static final int NOTIFY_ID = 1000;
     public static final int JOB_ALERT_ID = 999;
-
     public static NotifyHelper INSTANCE = new NotifyHelper();
 
     public Notification getForgroundNotification(Context context) {
@@ -31,5 +30,4 @@ public class NotifyHelper {
         notification.flags |= Notification.FLAG_NO_CLEAR;
         return notification;
     }
-
 }

@@ -1,15 +1,17 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.services;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.revenco.daemonsdk.java.services.AbsWorkService;
+
 public final class DaemonEnv {
     public static final long DEFAULT_WAKE_UP_INTERVAL = 1 * 60 * 1000;
     private static final long MINIMAL_WAKE_UP_INTERVAL = 1 * 60 * 1000;
-    static Context sApp;
-    static Class<? extends AbsWorkService> sServiceClass;
-    static boolean sInitialized;
+    public static Context sApp;
+    public static Class<? extends AbsWorkService> sServiceClass;
+    public static boolean sInitialized;
     private static long sWakeUpInterval = DEFAULT_WAKE_UP_INTERVAL;
 
     private DaemonEnv() {

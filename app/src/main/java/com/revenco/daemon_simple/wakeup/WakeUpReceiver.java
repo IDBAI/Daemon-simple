@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.revenco.daemon_simple.TraceServiceImpl;
 import com.revenco.daemonsdk.Constant;
-import com.revenco.daemonsdk.java.WatchDogService;
+import com.revenco.daemonsdk.java.services.WatchDogService;
 
 public class WakeUpReceiver extends BroadcastReceiver {
     private static final String TAG = "WakeUpReceiver";

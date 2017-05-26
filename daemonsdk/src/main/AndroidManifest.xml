@@ -11,13 +11,13 @@
         <!-- <service android:name=".java.AbsWorkService$WorkNotificationService"/> -->
 
         <service
-            android:name=".java.JobSchedulerService"
+            android:name=".java.services.JobSchedulerService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":watch"/>
         <service
-            android:name=".java.WatchDogService"
+            android:name=".java.services.WatchDogService"
             android:process=":watch"/>
 
         <!-- <service -->
@@ -25,24 +25,40 @@
         <!-- android:process=":watch"/> -->
 
         <service
-            android:name=".assistant.assistantService2"
+            android:name=".natives.assistant.assistantService2"
             android:enabled="true"
             android:exported="true"
             android:process=":assistant">
         </service>
 
         <receiver
-            android:name=".assistant.assistantReceiver2"
+            android:name=".natives.assistant.assistantReceiver2"
             android:enabled="true"
             android:exported="true"
             android:process=":assistant">
         </receiver>
 
         <activity
-            android:name=".java.TransParentActivity"
-            android:launchMode="singleTask"
+            android:name=".java.activitys.TransParentActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:process=":keeplive"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
         </activity>
+
+        <!-- 通知服务，可以提升app的前台级别 -->
+        <service
+            android:name=".java.notifys.NotificationMonitor"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.services;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.IBinder;
 
 import com.revenco.daemonsdk.DaemonManager;
+import com.revenco.daemonsdk.java.notifys.NotifyHelper;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;

@@ -1,4 +1,4 @@
-package com.revenco.daemonsdk.java;
+package com.revenco.daemonsdk.java.activitys;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,7 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * 屏幕锁屏之后，启动这个一个像素点的透明的act，来防止app被系统kill，
+ * 屏幕锁屏之后，启动这个一个像素点的透明的act，来防止app被系统kill，可以使进程的优先级在屏幕锁屏时间由4提升为最高优先级1。
  * 启动模式为 singleTask ，防止创建多个
  * 主题是：android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
  * 才能达到透明的效果！
@@ -43,12 +44,20 @@ public class TransParentActivity extends Activity {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     Log.e(TAG, "用户触摸，结束透明act");
-                    finish();
+                    finishActAndRemoveTask();
                     return false;
                 }
             });
         }
         registBroadcast(this);
+    }
+
+    private void finishActAndRemoveTask() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask();
+        } else {
+            finish();
+        }
     }
 
     private void registBroadcast(Context context) {
@@ -81,7 +90,7 @@ public class TransParentActivity extends Activity {
                 switch (intent.getAction()) {
                     case Intent.ACTION_USER_PRESENT:
                         Log.e(TAG, "解锁了，结束透明act");
-                        finish();
+                        finishActAndRemoveTask();
                         break;
                 }
             }
