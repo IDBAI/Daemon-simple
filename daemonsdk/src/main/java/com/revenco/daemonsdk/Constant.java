@@ -9,4 +9,8 @@ package com.revenco.daemonsdk;
  */
 public class Constant {
     public static final String ACTION_CANCEL_JOB_ALARM_SUB = "com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB";
+    /**
+     * 账户同步触发广播，实现唤醒
+     */
+    public static final String ACTION_WAKE_UP_BY_ACCOUNT_SYNC = "com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_ACCOUNT_SYNC";
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DaemonSDK</string>
+    <string name="account_auth_provider">com.revenco.daemonsdk.provider</string>
+    <string name="account_auth_type">com.revenco.daemonsdk.type</string>
 </resources>

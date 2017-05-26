@@ -38,8 +38,10 @@
                 <action android:name="android.intent.action.USER_PRESENT"/>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <!--用于取消服务工作,定义在SDK内部-->
                 <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
-                <action android:name="com.revenco.daemonsdk.java.ACTION_REGIST_SCREEN_BROADCAST"/>
+                <!--账户同步触发广播，实现唤醒,定义在SDK内部-->
+                <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_ACCOUNT_SYNC"/>
             </intent-filter>
             <intent-filter android:priority="90000">
                 <action android:name="android.intent.action.USER_PRESENT"/>

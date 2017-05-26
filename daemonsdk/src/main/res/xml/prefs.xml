@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="账户"/>
+
+    <Preference
+        android:summary="此账户为安全账户，不会对您的设备安全造成任何的影响"
+        android:title="温馨提示"/>
+</PreferenceScreen>

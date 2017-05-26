@@ -171,6 +171,9 @@ public class WatchDogService extends Service {
         return filter;
     }
 
+    /**
+     * 屏幕上锁广播接收
+     */
     static class ScreenStatusReverive extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

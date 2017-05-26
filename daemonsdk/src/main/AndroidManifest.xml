@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.revenco.daemonsdk">
 
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission
+        android:name="android.permission.GET_ACCOUNTS"
+        tools:node="replace"/>
 
     <application android:label="@string/app_name">
-
-        <!-- <service android:name=".java.AbsWorkService$WorkNotificationService"/> -->
-
         <service
             android:name=".java.services.JobSchedulerService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":watch"/>
+            android:process=":keeplive"/>
         <service
             android:name=".java.services.WatchDogService"
-            android:process=":watch"/>
-
-        <!-- <service -->
-        <!-- android:name=".java.WatchDogService$WatchDogNotificationService" -->
-        <!-- android:process=":watch"/> -->
-
+            android:process=":keeplive"/>
         <service
             android:name=".natives.assistant.assistantService2"
             android:enabled="true"
             android:exported="true"
-            android:process=":assistant">
+            android:process=":keeplive">
         </service>
 
         <receiver
             android:name=".natives.assistant.assistantReceiver2"
             android:enabled="true"
             android:exported="true"
-            android:process=":assistant">
+            android:process=":keeplive">
         </receiver>
-
+        <!-- android:excludeFromRecents="true"，设置为true后，当用户按了“最近任务列表”时候，该Task不会出现在最近任务列表中，可达到隐藏应用的目的。 -->
         <activity
             android:name=".java.activitys.TransParentActivity"
             android:excludeFromRecents="true"
@@ -47,17 +46,59 @@
             android:process=":keeplive"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
         </activity>
+        <activity
+            android:name=".java.accounts.AuthenticatorActivity"
+            android:process=":keeplive"
+            android:screenOrientation="portrait">
+        </activity>
 
         <!-- 通知服务，可以提升app的前台级别 -->
         <service
             android:name=".java.notifys.NotificationMonitor"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:process=":keeplive">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService"/>
             </intent-filter>
         </service>
+        <!-- 同步服务 -->
+        <service
+            android:name=".java.accounts.LiveSyncService"
+            android:exported="true"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter"/>
+        </service>
+        <!-- 账户提供者 -->
+        <provider
+            android:name=".java.accounts.LiveAccountProvider"
+            android:authorities="@string/account_auth_provider"
+            android:exported="false"
+            android:process=":keeplive"
+            android:syncable="true"/>
+
+        <!-- 账户服务 -->
+        <service
+            android:name=".java.accounts.LiveAccountService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator"/>
+        </service>
+
 
     </application>
 
