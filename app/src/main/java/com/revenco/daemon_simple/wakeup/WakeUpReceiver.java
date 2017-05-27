@@ -26,7 +26,7 @@ public class WakeUpReceiver extends BroadcastReceiver {
             WatchDogService.cancelJobAlarmSub();
             return;
         }
-        //动态注册屏幕解锁开锁ACTION
+        //动态注册屏幕解锁开锁ACTION，等等以及自定义的其他广播，以唤醒app
         try {
             Log.e(TAG, "ACTION =  " + intent.getAction() + " --> 唤醒业务服务！");
             context.startService(new Intent(context, TraceServiceImpl.class));

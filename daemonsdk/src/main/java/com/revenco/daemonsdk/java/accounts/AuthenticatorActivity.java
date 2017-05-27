@@ -27,8 +27,6 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.revenco.daemonsdk.DaemonManager;
-
 /**
  * Activity which displays login screen to the user.
  */
@@ -77,7 +75,6 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
         mRequestNewAccount = true;
         mConfirmCredentials = intent.getBooleanExtra(PARAM_CONFIRMCREDENTIALS, false);
         Log.i(TAG, "    request new: " + mRequestNewAccount);
-        DaemonManager.INSTANCE.SendSyncAccountBroadcast(this);
         handleLogin();
     }
 

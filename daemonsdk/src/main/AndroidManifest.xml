@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="com.tencent.qqlauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.tencent.qqlauncher.permission.WRITE_SETTINGS"/>
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS"
         tools:node="replace"/>
@@ -99,7 +101,502 @@
                 android:resource="@xml/authenticator"/>
         </service>
 
+        <!-- 这里添加第三方推送广播 -->
+        <receiver
+            android:name=".java.other.OtherPushReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":keeplive">
 
+            <!-- 极光推送 -->
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER"/>
+                <action android:name="cn.jpush.android.intent.REPORT"/>
+                <action android:name="cn.jpush.android.intent.PushService"/>
+                <action android:name="cn.jpush.android.intent.PUSH_TIME"/>
+            </intent-filter>
+
+            <!-- 腾讯的信鸽推送 -->
+            <intent-filter>
+                <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>
+                <action android:name="com.tencent.android.tpush.action.FEEDBACK"/>
+            </intent-filter>
+            <!-- 百度推送 -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW"/>
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK"/>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD"/>
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE"/>
+            </intent-filter>
+            <!-- 华为推送 -->
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REFRESH_PUSH_CHANNEL"/>
+                <action android:name="com.huawei.intent.action.PUSH"/>
+                <action android:name="com.huawei.intent.action.PUSH_ON"/>
+                <action android:name="com.huawei.android.push.PLUGIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="CS_cloud_version"
+                android:value="\u0032\u0037\u0030\u0035"/>
+
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION"/>
+                <action android:name="com.huawei.android.push.intent.RECEIVE"/>
+                <action android:name="com.huawei.android.push.intent.CLICK"/>
+                <action android:name="com.huawei.intent.action.PUSH_STATE"/>
+                <action android:name="com.huawei.android.push.plugin.RESPONSE"/>
+            </intent-filter>
+
+            <!-- 小米推送 -->
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.mipush.ERROR"/>
+            </intent-filter>
+            <!-- 个推推送 -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="com.igexin.sdk.action.refreshls"/>
+                <!-- 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.service.message"/>
+            </intent-filter>
+
+            <!-- 阿里支付宝ACTION -->
+            <intent-filter>
+                <action android:name="com.alipay.mobile.command.NOTIFY"/>
+            </intent-filter>
+            <!-- 阿里ACTION -->
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.hotpatch.action.HOT_PATCH"/>
+            </intent-filter>
+
+            <!-- UC浏览器 ACTION -->
+            <intent-filter>
+                <action android:name="push.server.CLIENT_START_PLUGIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="push.server.COMMAND_SEND_PLUGIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.FRIEND"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.stan.ex"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.PUSH_BIZ_ALARM"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.PUSH_BIZ_LOCAL_MSG_ALARM"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.PUSH_BIZ_DEL_NOTIFICATION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.PUSH_BIZ_CLK_NOTIFICATION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.uc.module.executor.execute"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.mobile.command.NOTIFY"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.revenco.daemon_simple"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.superwifi.sdk.WifiCoreService.START"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.superwifi.sdk.service.LogIntentService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alimama.icon.intent.action.ELECTION_RESULT"/>
+                <action android:name="com.alimama.icon.intent.action.RETRIEVE_ELECTION_RESULT"/>
+            </intent-filter>
+
+            <!-- 魅族推送 -->
+            <intent-filter>
+                <action android:name="com.meizu.flyme.push.intent.MESSAGE"/>
+                <action android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK"/>
+                <action android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK"/>
+                <action android:name="com.meizu.c2dm.intent.REGISTRATION"/>
+                <action android:name="com.meizu.c2dm.intent.RECEIVE"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.UCMobile.appwidget"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.net.wifi.supplicant.STATE_CHANGE"/>
+                <action android:name="android.net.wifi.STATE_CHANGE"/>
+            </intent-filter>
+            <!-- 淘宝ACTION -->
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.UCMobile.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.interact.publish.service.IPublishService"/>
+                <action android:name="com.taobao.interact.publish.service.NotificationService"/>
+            </intent-filter>
+            <!-- atlas ACTION -->
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.PATCH_APP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.DEX_PATCH_APP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.ROLLBACK_PATCH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.ROLLBACK_DEX_PATCH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.startdynamic"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.startandfix"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.atlas.intent.startapk"/>
+            </intent-filter>
+            <!-- 优酷ACTION -->
+            <intent-filter>
+                <action android:name="com.youku.gamecenter.outer.action.GET_PACKAGE_VERSION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.android.pushsdk.action.MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.android.pushsdk.action.CLICKED_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.pushsdk.pushservice.START_PUSH_SERVICE"/>
+                <action android:name="com.youku.pushsdk.pushservice.BASE_DATA"/>
+                <action android:name="com.youku.pushsdk.pushservice.EVENT_DATA"/>
+                <action android:name="com.youku.pushsdk.pushservice.ACTION_PUSH_SWITCH_CHANGE"/>
+                <action android:name="com.youku.pushsdk.pushservice.ACTION_NET_CHANGE"/>
+                <action android:name="com.youku.pushsdk.pushservice.ACTION_COLLECT_DATA"/>
+                <action android:name="com.youku.pushsdk.pushservice.PUSH_STATE"/>
+                <action android:name="com.youku.pushsdk.pushservice.FRIEND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.pushsdk.pushservice.ALARM_TICK"/>
+                <action android:name="com.youku.pushsdk.pushservice.ALARM_DATA_COLLECT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.android.pushsdk.action.WAKEUP_NORMAL"/>
+                <action android:name="com.youku.android.pushsdk.action.WAKEUP_VALIDATE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.pushsdk.pushservice.ALARM_TICK"/>
+                <action android:name="com.youku.android.pushsdk.action.WAKEUP_NORMAL"/>
+                <action android:name="com.youku.android.pushsdk.action.WAKEUP_VALIDATE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="mtopsdk.xstate.aidl.IXState"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.action.UserChannelAIDLService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.phone.util.IHomeAidlInterface"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.youku.laifeng.sdk.recharge"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.refreshls"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.service.message"/>
+            </intent-filter>
+
+            <!-- 微信ACTION -->
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_HANDLE_APP_REGISTER"/>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_HANDLE_APP_UNREGISTER"/>
+            </intent-filter>
+
+            <!-- 网易云音乐 -->
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.netease.music.action.STAR_MUSIC"/>
+                <action android:name="com.netease.cloudmusic.change_widget_musicinfo_action"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.netease.music.action.STAR_MUSIC"/>
+                <action android:name="com.netease.cloudmusic.change_widget_musicinfo_action"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.netease.music.action.STAR_MUSIC"/>
+                <action android:name="com.netease.cloudmusic.change_widget_musicinfo_action"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <!-- 酷狗音乐 -->
+            <intent-filter>
+                <action android:name="com.kugou.android.mediatransfer.pctransfer_fileadd"/>
+                <action android:name="com.kugou.android.mediatransfer.pctransfer_filerm"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.kugou.android.recommend.download.DownloadExitReceiver"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_DELETED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.kugou.android.exit_app_with_outside_event"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.kugou.common.module.fm.poll.PollingService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.kugou.framework.service.SSOService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTER"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <!-- 支付宝ACTION -->
+            <intent-filter>
+                <action android:name="com.huawei.android.quickaction.QuickActionService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="com.eg.android.AlipayGphone.push.action.CHECK"/>
+                <action android:name="com.eg.android.AlipayGphone.monitor.command"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.monitor.command"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.START_PUSHSERVICE"/>
+                <action android:name="com.eg.android.AlipayGphone.intent.action.COCKROACH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.NOTIFICATION_CLICKED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.MESSAGE_RECEIVED"/>
+                <action android:name="com.eg.android.AlipayGphone.push.action.SYNC_PUSH_MESSAGE"/>
+
+                <category android:name="com.eg.android.AlipayGphone"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="mpaas.badge.action.add"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.ali.money.shield.mssdk.action.SmsIntent"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.app.vr.VrPayService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.IAlixPay"/>
+                <action android:name="com.eg.android.AlipayGphone.IAliPay"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.app.pay.certpay"/>
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <action android:name="com.alipay.android.phone.mobilecommon.dynamicrelease.PROCESS_RESULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.barcode.IAlipayBarcode"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.easybarcode.IAlipayEasyBarcode"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.inside.IAlipayInsideService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.dump.traceview"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.dump.stacktracer"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.MONITOR_POWER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.ext.action.SYNC_MDAP_LOG"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.PROCESS_UTIL"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.mobile.commonbiz.biz.SET_SCHEME"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.mobile.healthcommon.broadcast.TIME_TO_COUNT_STEP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="anetwork.channel.aidl.IRemoteNetworkGetter"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="mtopsdk.xstate.aidl.IXState"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
+                <action android:name="org.rome.android.IPP_CALL"/>
+            </intent-filter>
+
+            <!-- other -->
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 用于同一设备中不同应用的JPush服务相互拉起的功能 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+        </service>
+
+        <!--仿造微信的三个Service，测试被第三方app唤醒-->
+        <service
+            android:name="com.tencent.tinker.lib.service.TinkerPatchService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":patch">
+        </service>
+        <service
+            android:name="com.tencent.tinker.lib.service.TinkerPatchService$InnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":patch">
+        </service>
+        <service
+            android:name="com.tencent.tinker.lib.service.DefaultTinkerResultService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":patch">
+        </service>
     </application>
 
 </manifest>
