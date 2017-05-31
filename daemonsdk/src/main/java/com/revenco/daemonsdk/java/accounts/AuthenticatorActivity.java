@@ -22,17 +22,14 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * Activity which displays login screen to the user.
+ * 添加账户的页面，官方默认提供的标准代码写法
  */
 public class AuthenticatorActivity extends AccountAuthenticatorActivity {
     public static final String PARAM_CONFIRMCREDENTIALS = "confirmCredentials";
-    public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_USERNAME = "username";
     public static final String PARAM_AUTHTOKEN_TYPE = "authtokenType";
     private static final String TAG = Debugger.TAG;
@@ -45,18 +42,12 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
      */
     protected boolean mRequestNewAccount = false;
     private AccountManager mAccountManager;
-    private Thread mAuthThread;
     private String mAuthtoken;
     private String mAuthtokenType;
     /**
      * If set we are just checking that the user knows their credentials; this doesn't cause the user's password to be changed on the device.
      */
     private Boolean mConfirmCredentials = false;
-    private TextView mMessage;
-    private String mPassword;
-    private EditText mPasswordEdit;
-    private String mUsername;
-    private EditText mUsernameEdit;
 
     /**
      * {@inheritDoc}
@@ -68,10 +59,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
         mAccountManager = AccountManager.get(this);
         Log.i(TAG, "loading data from Intent");
         final Intent intent = getIntent();
-        mUsername = intent.getStringExtra(PARAM_USERNAME);
         mAuthtokenType = intent.getStringExtra(PARAM_AUTHTOKEN_TYPE);
-        mUsername = "同步";
-        mPassword = "123456";
         mRequestNewAccount = true;
         mConfirmCredentials = intent.getBooleanExtra(PARAM_CONFIRMCREDENTIALS, false);
         Log.i(TAG, "    request new: " + mRequestNewAccount);
@@ -88,14 +76,17 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
     }
 
     /**
-     * Called when response is received from the server for confirm credentials request. See onAuthenticationResult(). Sets the AccountAuthenticatorResult which is sent back to the caller.
+     * 确认证书请求
+     * Called when response is received from the server for confirm credentials request.
+     * <p>
+     * See onAuthenticationResult(). Sets the AccountAuthenticatorResult which is sent back to the caller.
      *
      * @param result
      */
     protected void finishConfirmCredentials(boolean result) {
         Log.i(TAG, "finishConfirmCredentials()");
-        final Account account = new Account(mUsername, Constants.ACCOUNT_TYPE);
-        mAccountManager.setPassword(account, mPassword);
+        final Account account = new Account(Constants.mUsername, Constants.ACCOUNT_TYPE);
+        mAccountManager.setPassword(account, Constants.mPassword);
         final Intent intent = new Intent();
         intent.putExtra(AccountManager.KEY_BOOLEAN_RESULT, result);
         setAccountAuthenticatorResult(intent.getExtras());
@@ -106,19 +97,20 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity {
     /**
      * Called when response is received from the server for authentication request. See onAuthenticationResult(). Sets the AccountAuthenticatorResult which is sent back to the caller. Also sets the authToken in AccountManager for this account.
      */
-    protected void finishLogin() throws Exception {
-        Log.i(TAG, "finishLogin()");
-        final Account account = new Account(mUsername, Constants.ACCOUNT_TYPE);
+    protected void finishLogin() {
+        final Account account = new Account(Constants.mUsername, Constants.ACCOUNT_TYPE);
         if (mRequestNewAccount) {
-            mAccountManager.addAccountExplicitly(account, mPassword, null);
-            // Set contacts sync for this account.
-            ContentResolver.setSyncAutomatically(account, ContactsContract.AUTHORITY, true);
+            Log.i(TAG, "mAccountManager.addAccountExplicitly(account, Constants.mPassword, null); ");
+            mAccountManager.addAccountExplicitly(account, Constants.mPassword, null);
+            //设置让这个账号可以自己主动同步
+            ContentResolver.setSyncAutomatically(account, LiveAccountProvider.AUTHORITY, true);
         } else {
-            mAccountManager.setPassword(account, mPassword);
+            Log.i(TAG, "mAccountManager.setPassword(account, Constants.mPassword); ");
+            mAccountManager.setPassword(account, Constants.mPassword);
         }
         final Intent intent = new Intent();
-        mAuthtoken = mPassword;
-        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, mUsername);
+        mAuthtoken = Constants.mPassword;
+        intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, Constants.mUsername);
         intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, Constants.ACCOUNT_TYPE);
         if (mAuthtokenType != null && mAuthtokenType.equals(Constants.AUTHTOKEN_TYPE)) {
             intent.putExtra(AccountManager.KEY_AUTHTOKEN, mAuthtoken);

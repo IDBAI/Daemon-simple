@@ -15,6 +15,9 @@ import android.util.Log;
  * <p>CLASS_VERSION : 1.0.0</p>
  */
 public class LiveAccountProvider extends ContentProvider {
+    /**
+     * 账户同步的身份认证提供者
+     */
     public static final String AUTHORITY = "com.revenco.daemonsdk.provider";
     public static final String CONTENT_URI_BASE = "content://" + AUTHORITY;
     public static final String TABLE_NAME = "data";

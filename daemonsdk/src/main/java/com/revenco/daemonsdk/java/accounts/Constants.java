@@ -13,19 +13,17 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package com.revenco.daemonsdk.java.accounts;
 
 public class Constants {
-
     /**
      * Account type string.
      */
     public static final String ACCOUNT_TYPE = "com.revenco.daemonsdk";
-
     /**
      * Authtoken type string.
      */
     public static final String AUTHTOKEN_TYPE = "com.revenco.daemonsdk";
-
+    public static final String mUsername = "同步";
+    public static final String mPassword = "123456";
 }

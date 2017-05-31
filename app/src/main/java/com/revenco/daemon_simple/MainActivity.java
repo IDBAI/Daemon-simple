@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 Notification notification = NotifyHelper.INSTANCE.getForgroundNotification(this.getApplicationContext());
                 NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 manager.notify(1000, notification);
+//                DaemonManager.INSTANCE.addAccount(this.getApplicationContext());
                 break;
         }
     }

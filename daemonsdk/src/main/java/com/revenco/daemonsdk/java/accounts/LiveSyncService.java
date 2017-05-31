@@ -12,6 +12,9 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.revenco.daemonsdk.DaemonManager;
+import com.revenco.daemonsdk.utils.XLog;
+
 /**
  * <p>PROJECT : Daemon-simple</p>
  * <p>COMPANY : wanzhong</p>
@@ -50,7 +53,8 @@ public class LiveSyncService extends Service {
         @Override
         public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
             getContext().getContentResolver().notifyChange(LiveAccountProvider.CONTENT_URI, null, false);
-            Log.d(TAG, "onPerformSync() called ");
+            XLog.log2Sdcard(TAG, "onPerformSync() called - 将触发账户同步功能，释放SDK-ACTION! ");
+            DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getContext(), null);
         }
     }
 }

@@ -1,14 +1,18 @@
 package com.revenco.daemonsdk;
 
+import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.revenco.daemonsdk.java.accounts.Constants;
+import com.revenco.daemonsdk.java.accounts.LiveAccountProvider;
 import com.revenco.daemonsdk.java.activitys.TransParentActivity;
 import com.revenco.daemonsdk.natives.DaemonClient;
 import com.revenco.daemonsdk.natives.DaemonConfigurations;
@@ -41,13 +45,17 @@ public class DaemonManager {
         addAccount(context);
     }
 
-    private void addAccount(Context context) {
+    public void addAccount(Context context) {
         mAccountManager = AccountManager.get(context);
         // 跳转添加账户页
         mAccountManager.addAccount(context.getResources().getString(R.string.account_auth_type), context.getResources().getString(R.string.account_auth_type), null, null, null, new AccountManagerCallback<Bundle>() {
             @Override
             public void run(AccountManagerFuture<Bundle> future) {
-                Log.d(TAG, "run() called ");
+                Log.d(TAG, "添加账户 -> run() called ");
+                final Account account = new Account(Constants.mUsername, Constants.ACCOUNT_TYPE);
+                mAccountManager.addAccountExplicitly(account, Constants.mPassword, null);
+                //设置让这个账号可以自己主动同步
+                ContentResolver.setSyncAutomatically(account, LiveAccountProvider.AUTHORITY, true);
             }
         }, null);
     }
