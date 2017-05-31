@@ -14,6 +14,7 @@ import android.util.Log;
 
 import com.revenco.daemonsdk.DaemonManager;
 import com.revenco.daemonsdk.R;
+import com.revenco.daemonsdk.utils.XLog;
 
 /**
  * 账户服务
@@ -65,14 +66,14 @@ public class LiveAccountService extends Service {
 
         @Override
         public Bundle addAccount(AccountAuthenticatorResponse response, String accountType, String authTokenType, String[] requiredFeatures, Bundle options) throws NetworkErrorException {
-            Log.d(TAG, "addAccount() called ");
+            XLog.log2Sdcard(TAG, "addAccount() called ");
             final Intent intent = new Intent(context, AuthenticatorActivity.class);
             authTokenType = context.getResources().getString(R.string.account_auth_type);
             intent.putExtra(AuthenticatorActivity.PARAM_AUTHTOKEN_TYPE, authTokenType);
             intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
             final Bundle bundle = new Bundle();
             bundle.putParcelable(AccountManager.KEY_INTENT, intent);
-            DaemonManager.INSTANCE.SendSyncAccountBroadcast(context);
+            DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(context,null);
             return bundle;
         }
 

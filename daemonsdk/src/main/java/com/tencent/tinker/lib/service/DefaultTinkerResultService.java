@@ -3,9 +3,9 @@ package com.tencent.tinker.lib.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.revenco.daemonsdk.DaemonManager;
+import com.revenco.daemonsdk.utils.XLog;
 
 public class DefaultTinkerResultService extends Service {
     private static final String TAG = "DefaultTinkerResultServ";
@@ -19,8 +19,8 @@ public class DefaultTinkerResultService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand() called 仿造微信 —> DefaultTinkerResultService ");
-        DaemonManager.INSTANCE.SendSyncAccountBroadcast(getApplicationContext());
+        XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> DefaultTinkerResultService ");
+        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(),intent);
         return super.onStartCommand(intent, flags, startId);
 
     }

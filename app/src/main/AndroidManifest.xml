@@ -30,35 +30,18 @@
             android:exported="true"
             android:process=":business">
         </receiver>
-        <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________start-->
+        <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________start-->
         <receiver
             android:name=".wakeup.WakeUpReceiver"
             android:process=":watch">
             <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT"/>
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
                 <!--用于取消服务工作,定义在SDK内部-->
                 <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
-                <!--账户同步触发广播，实现唤醒,定义在SDK内部-->
-                <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_ACCOUNT_SYNC"/>
+                <!--更加多的唤醒方式，在SDK内部实现，然后外发这个ACTION广播，实现唤醒-->
+                <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_MORE_METHOD"/>
             </intent-filter>
-            <intent-filter android:priority="90000">
-                <action android:name="android.intent.action.USER_PRESENT"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
 
-                <data android:scheme="package"/>
-            </intent-filter>
         </receiver>
-
-
         <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________end-->
 
     </application>

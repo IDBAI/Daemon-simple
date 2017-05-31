@@ -6,6 +6,7 @@ import android.accounts.AccountManagerFuture;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.revenco.daemonsdk.java.activitys.TransParentActivity;
@@ -13,6 +14,7 @@ import com.revenco.daemonsdk.natives.DaemonClient;
 import com.revenco.daemonsdk.natives.DaemonConfigurations;
 import com.revenco.daemonsdk.natives.assistant.assistantReceiver2;
 import com.revenco.daemonsdk.natives.assistant.assistantService2;
+import com.revenco.daemonsdk.utils.XLog;
 
 /**
  * <p>PROJECT : Daemon-simple</p>
@@ -70,9 +72,18 @@ public class DaemonManager {
         context.startActivity(intent);
     }
 
-    public void SendSyncAccountBroadcast(Context context) {
-        Log.d(TAG, "SendSyncAccountBroadcast() called ");
-        context.sendBroadcast(new Intent(Constant.ACTION_WAKE_UP_BY_ACCOUNT_SYNC));
+    /**
+     * SDK内部向外发送唤醒广播
+     *
+     * @param context
+     * @param intent
+     */
+    public void SendSDKWakeUpBroadcast(Context context, Intent intent) {
+        String log = "SendSDKWakeUpBroadcast() called ";
+        if (intent != null && !TextUtils.isEmpty(intent.getAction()))
+            log += " with ACTION = " + intent.getAction();
+        XLog.log2Sdcard(TAG, log);
+        context.sendBroadcast(new Intent(Constant.ACTION_WAKE_UP_BY_MORE_METHOD));
     }
 
     class MyDaemonListener implements DaemonConfigurations.DaemonListener {

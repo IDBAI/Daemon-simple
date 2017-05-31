@@ -4,9 +4,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.revenco.daemonsdk.DaemonManager;
+import com.revenco.daemonsdk.utils.XLog;
 
 public class TinkerPatchService extends Service {
     private static final String TAG = "TinkerPatchService";
@@ -21,8 +21,8 @@ public class TinkerPatchService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService ");
-        DaemonManager.INSTANCE.SendSyncAccountBroadcast(getApplicationContext());
+        XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService ");
+        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -35,8 +35,8 @@ public class TinkerPatchService extends Service {
 
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
-            Log.d(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService $ InnerService ");
-            DaemonManager.INSTANCE.SendSyncAccountBroadcast(getApplicationContext());
+            XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService $ InnerService ");
+            DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
             return super.onStartCommand(intent, flags, startId);
         }
     }
