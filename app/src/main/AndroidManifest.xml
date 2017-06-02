@@ -40,9 +40,8 @@
                 <!--更加多的唤醒方式，在SDK内部实现，然后外发这个ACTION广播，实现唤醒-->
                 <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_MORE_METHOD"/>
             </intent-filter>
-
         </receiver>
-        <!--唤醒接收器必须在application模块，才能生效唤醒业务服务_________end-->
+        <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________end-->
 
     </application>
 

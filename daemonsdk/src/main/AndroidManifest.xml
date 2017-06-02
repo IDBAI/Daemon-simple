@@ -14,6 +14,172 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
     <uses-permission android:name="com.tencent.qqlauncher.permission.READ_SETTINGS"/>
     <uses-permission android:name="com.tencent.qqlauncher.permission.WRITE_SETTINGS"/>
+
+    <!--配置权限copy自支付宝___start-->
+
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.miui.mihome2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.miui.mihome2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.aliyun.homeshell.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.aliyun.homeshell.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lenovo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lenovo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.iLoong.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.iLoong.permission.READ_SETTINGS"/>
+    <uses-permission android:name="cn.nubia.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="cn.nubia.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.smartisanos.launcher.WRITE_DATABASE"/>
+    <uses-permission android:name="com.smartisanos.launcher.READ_DATABASE"/>
+    <uses-permission android:name="com.smartisanos.launcher.data.ExportDataProvider"/>
+    <uses-permission android:name="com.teslacoilsw.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.teslacoilsw.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.meizu.flyme.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.meizu.flyme.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.ztemt.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.ztemt.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.zte.lqsoft.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.zte.lqsoft.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.baoruan.launcher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.baoruan.launcher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.fineos.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.fineos.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.ibingo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.ibingo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.zui.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.zui.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.qihoo360.screenlock.permission.READ_LOCAL_THEME"/>
+    <uses-permission android:name="com.qihoo360.screenlock.permission.WRITE_LOCAL_THEME"/>
+    <uses-permission android:name="com.zte.mifavor.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.zte.mifavor.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.tpwlauncher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.tpwlauncher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.sprdlauncher1.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.sprdlauncher1.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.s.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.s.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.zte.mobile.ZteLauncher3D.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.zte.mobile.ZteLauncher3D.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher23.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher23.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.mgyun.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.mgyun.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.asus.launcher3.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.asus.launcher3.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.tsf.shell.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.tsf.shell.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.tul.aviate.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.tul.aviate.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.lenovo.launcherhdmarket.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lenovo.launcherhdmarket.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.hola.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.hola.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.qihoo360.home.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.qihoo360.home.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.slim.slimlauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.slim.slimlauncher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huaqin.launcherEx.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huaqin.launcherEx.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.epic.launcher.tw.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.epic.launcher.tw.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.lewalauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.lewalauncher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.Dean.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.Dean.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="app.cobo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="app.cobo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.alphalp.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.alphalp.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lollipop.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lollipop.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.l.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.l.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.dlto.atom.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.dlto.atom.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.sprdlauncher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.sprdlauncher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.konka.launcher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.konka.launcher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.mycheering.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.mycheering.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.microsoft.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.microsoft.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.nicelauncher.lolauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.nicelauncher.lolauncher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.jui.launcher3.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.jui.launcher3.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.qihoo360.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.qihoo360.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.lge.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.lge.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="net.qihoo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="net.qihoo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="org.adw.launcher_donut.permission.READ_SETTINGS"/>
+    <uses-permission android:name="org.adw.launcher_donut.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher3.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher3.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.twlauncher.settings.READ_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.twlauncher.settings.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.anddoes.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.anddoes.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.tencent.qqlauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.tencent.qqlauncher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.ebproductions.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.ebproductions.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="telecom.mdesk.permission.READ_SETTINGS"/>
+    <uses-permission android:name="telecom.mdesk.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="dianxin.permission.ACCESS_LAUNCHER_DATA"/>
+    <uses-permission android:name="com.modaco.android.launchergb.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.modaco.android.launchergb.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.bbk.launcher2.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.bbk.launcher2.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.htc.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.twlauncher.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.sec.android.app.twlauncher.READ_SETTINGS"/>
+    <uses-permission android:name="org.adw.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="org.adw.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="org.adwfreak.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="org.adwfreak.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.gau.go.launcherex.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.gau.go.launcherex.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.fede.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.fede.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.nd.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.nd.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.mylauncher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.mylauncher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.mx.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.mx.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher3.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.android.launcher3.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="com.google.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.google.android.launcher.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
+    <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS"/>
+    <uses-permission android:name="cn.org.ifaa.permission.USE_IFAA_MANAGER"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <uses-permission android:name="miui.permission.READ_STEPS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <!--配置权限copy自支付宝___end-->
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS"
         tools:node="replace"/>
@@ -103,7 +269,7 @@
                 android:resource="@xml/authenticator"/>
         </service>
 
-        <!-- 这里添加第三方推送广播 -->
+        <!-- 这里添加第三方推送\ACTION广播 -->
         <receiver
             android:name=".java.other.OtherPushReceiver"
             android:enabled="true"
@@ -177,11 +343,6 @@
                 <action android:name="com.huawei.android.push.intent.REGISTER"/>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
-
-            <meta-data
-                android:name="CS_cloud_version"
-                android:value="\u0032\u0037\u0030\u0035"/>
-
             <intent-filter>
                 <action android:name="com.huawei.android.push.intent.REGISTRATION"/>
                 <action android:name="com.huawei.android.push.intent.RECEIVE"/>
@@ -466,6 +627,41 @@
                 <action android:name="com.huawei.android.push.intent.REGISTER"/>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
+            <!-- 微信ACTION -->
+            <intent-filter>
+                <action android:name="android.media.SCO_AUDIO_STATE_CHANGED"/>
+                <action android:name="android.media.ACTION_SCO_AUDIO_STATE_UPDATED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="MMBakchatServiceStart"/>
+                <action android:name="MMBakchatServiceStop"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_HANDLE_APP_REGISTER"/>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_HANDLE_APP_UNREGISTER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tencent.mm.permission.MM_AUTO_HEARD_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tencent.mm.permission.MM_AUTO_REPLY_MESSAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+
+                <category android:name="com.revenco.daemon_simple"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tencent.mm..plugin.photoedit.action.clear"/>
+            </intent-filter>
+
             <!-- 支付宝ACTION -->
             <intent-filter>
                 <action android:name="com.huawei.android.quickaction.QuickActionService"/>
@@ -560,6 +756,282 @@
                 <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
                 <action android:name="org.rome.android.IPP_CALL"/>
             </intent-filter>
+            <!-- 淘宝ACTION -->
+            <intent-filter>
+                <action android:name="setaobao.bbox.DNS"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="anetwork.channel.aidl.IRemoteNetworkGetter"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.agoo.personal.action"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.android.agoo.client.MessageReceiverService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.orange.service.OrangeApiService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.event.TLogAndTrace"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.action.WATCH_DOG"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="SilenceHuDong"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.intent.thirdPush.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.calendar.sdk.alarm.PLAY"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.RESET"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.STOP"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.SYN"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.KILL"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.TIMEOUT"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.calendar.sdk.alarm.NOTIFY"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.calendar.sdk.alarm.SYN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.calendar.sdk.alarm.PLAY"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.RESET"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.KILL"/>
+                <action android:name="com.taobao.calendar.sdk.alarm.STOP"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.calendar.aidl.service.ICalendarService"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.AIDLBioAuthService"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.login4android.api.aidl.ILogin"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="TAOBAO_DELAY_START_LOGIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="TMHealth"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tmall.wireless.health.TMStepService"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.tao.favorite.aidl.IFavContent"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.favorite.good.service"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.favorite.GoodsRefresh"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.huawei.android.push.intent.REGISTRATION"/>
+                <action android:name="com.huawei.android.push.intent.RECEIVE"/>
+                <action android:name="com.huawei.intent.action.PUSH"/>
+                <action android:name="com.huawei.intent.action.PUSH_STATE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+
+                <category android:name="com.taobao.taobao"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.share.aidl.ISharePassword"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.activelocation.report.service.FORE_GROUND_ACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.activelocation.report.service.LOCATION_CHANGE_ACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.activelocation.report.service.LOCATION_ERROR_ACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.passivelocation.report.service.LOCATION_UPLOAD_SINGLE_ACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.passivelocation.report.service.LOCATION_UPLOAD_ACTION"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.passivelocation.report.service.LOCATION_UPLOAD_START"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.geofence.Location_Changed"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.geofence.Wifi_Changed"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.geofence.Ibeacon_Changed"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ACTION_JU_UPDATE_SPLASH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ACTION_JU_UPDATE_TABBAR"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ju_shoucang_notify"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="slient_push"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="silent_download_ut"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ut_point"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="ACTION_DOWNLOAD_APP_THEME_IMAGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.tmall.market.plugin.placeholder.PlaceholderService1"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.AIDL_IRPSERVICE"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.android.shake.api.IShakeHistoryService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="WVTrumpCardPlayer"/>
+                <action android:name="WVTrumpCardRecognizer"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="TAOBAO_DELAY_START_ALLSPARK"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.action.APPSTART"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.action.SDK_INITED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.taobao.action.APPEXIT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="NOTIFY_LOGINBYKEY_SUCCESS"/>
+                <action android:name="NOTIFY_LOGINBYKEY_FAILED"/>
+            </intent-filter>
+            <!-- 支付宝 -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="com.eg.android.AlipayGphone.push.action.CHECK"/>
+                <action android:name="com.eg.android.AlipayGphone.monitor.command"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="mpaas.badge.action.add"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.app.pay.certpay"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.mobilecommon.dynamicrelease.ACTION_SYNC_CONFIG"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.dump.traceview"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.dump.stacktracer"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.action.MONITOR_POWER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="monitor.ext.action.SYNC_MDAP_LOG"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.PROCESS_UTIL"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.mobile.commonbiz.biz.SET_SCHEME"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.mobile.healthcommon.broadcast.TIME_TO_COUNT_STEP"/>
+            </intent-filter>
 
             <!-- other -->
             <intent-filter>
@@ -598,7 +1070,7 @@
             </intent-filter>
         </service>
 
-        <!--仿造微信的三个Service，测试被第三方app唤醒-->
+        <!-- 仿造微信的三个Service，测试被第三方app唤醒 -->
         <service
             android:name="com.tencent.tinker.lib.service.TinkerPatchService"
             android:enabled="true"
@@ -616,6 +1088,131 @@
             android:enabled="true"
             android:exported="false"
             android:process=":patch">
+        </service>
+        <!-- 以下开始是仿造第三方service，以便第三方通过隐式方式启动时候，一起被唤醒 -->
+        <!-- 淘宝service -->
+        <service
+            android:name="com.taobao.accs.ChannelService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":channel">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.agoo.android.intent.action.PING_V4"/>
+                <!-- <category android:name="taobao"/> 定义淘宝的category，便于被支付宝唤醒 -->
+                <category android:name="taobao"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.taobao.accs.data.MsgDistributeService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.tencent.mm.modelstat.WatchDogPushReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push">
+        </receiver>
+
+        <service
+            android:name="com.tencent.mm.booter.CoreService"
+            android:enabled="true"
+            android:process=":push">
+        </service>
+        <service
+            android:name="com.tencent.mm.booter.CoreService$InnerService"
+            android:enabled="true"
+            android:process=":push">
+        </service>
+        <service
+            android:name="com.otherService.PushService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="com.youku.pushsdk.pushservice.FRIEND"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="org.rome.android.ipp.binder.IppService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":push">
+            <intent-filter>
+                <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
+                <action android:name="org.rome.android.IPP_CALL"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.otherService.SilentInstallService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="com.kinguser.kingroot.ACTION_INSTALL"/>
+            </intent-filter>
+        </service>
+        <!--支付宝推送服务-->
+        <service
+            android:name="com.otherService.NotificationService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.START_PUSHSERVICE"/>
+                <action android:name="com.eg.android.AlipayGphone.intent.action.COCKROACH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.NOTIFICATION_CLICKED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.push.action.MESSAGE_RECEIVED"/>
+                <action android:name="com.eg.android.AlipayGphone.push.action.SYNC_PUSH_MESSAGE"/>
+
+                <category android:name="com.eg.android.AlipayGphone"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.ali.money.shield.mssdk.action.SmsIntent"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.app.vr.VrPayService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.eg.android.AlipayGphone.IAlixPay"/>
+                <action android:name="com.eg.android.AlipayGphone.IAliPay"/>
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.alipay.android.phone.mobilecommon.dynamicrelease.PROCESS_RESULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.barcode.IAlipayBarcode"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.easybarcode.IAlipayEasyBarcode"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alipay.android.phone.inside.IAlipayInsideService"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="anetwork.channel.aidl.IRemoteNetworkGetter"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="mtopsdk.xstate.aidl.IXState"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
+                <action android:name="org.rome.android.IPP_CALL"/>
+            </intent-filter>
+
         </service>
     </application>
 

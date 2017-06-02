@@ -3,6 +3,7 @@ package com.revenco.daemonsdk.utils;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -93,6 +94,11 @@ public class XLog {
     }
 
     public static synchronized void writeLog2File(String tag, String text) {
+        try {
+            text = new String(text.getBytes(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         String LOG_PATH = Environment.getExternalStorageDirectory() + "/_daemonLog/";
         final String LOG_FILE_NAME = "_log.txt";
         final SimpleDateFormat contentPrefix = new SimpleDateFormat("yyyy-MM-dd-HH HH:mm:ss.sss");

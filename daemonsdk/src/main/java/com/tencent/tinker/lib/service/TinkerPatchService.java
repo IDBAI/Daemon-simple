@@ -26,7 +26,7 @@ public class TinkerPatchService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    class InnerService extends Service {
+    public class InnerService extends Service {
         @Nullable
         @Override
         public IBinder onBind(Intent intent) {
