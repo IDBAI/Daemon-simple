@@ -1,4 +1,4 @@
-package com.revenco.daemon_simple;
+package com.eg.android.AlipayGphone;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         try {
-            startService(new Intent(this, TraceServiceImpl.class));
+            startService(new Intent(this,  TraceServiceImpl.class));
         } catch (Exception ignored) {
         }
     }

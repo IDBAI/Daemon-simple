@@ -1,4 +1,4 @@
-package com.revenco.daemon_simple;
+package com.revenco.app;
 
 import org.junit.Test;
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.eg.android.AlipayGphone">
+
+    <!--com.revenco.daemon_simple-->
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".TraceServiceImpl"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":business"/>
+
+        <receiver
+            android:name=".assistantReceiver1"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":business">
+        </receiver>
+        <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________start-->
+        <receiver
+            android:name=".wakeup.WakeUpReceiver"
+            android:process=":watch">
+            <intent-filter>
+                <!--用于取消服务工作,定义在SDK内部-->
+                <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
+                <!--更加多的唤醒方式，在SDK内部实现，然后外发这个ACTION广播，实现唤醒-->
+                <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_MORE_METHOD"/>
+            </intent-filter>
+        </receiver>
+        <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________end-->
+
+    </application>
+
+</manifest>

@@ -1,17 +1,14 @@
-package com.revenco.daemon_simple.wakeup;
+package com.revenco.app.wakeup;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.revenco.daemon_simple.TraceServiceImpl;
+import com.revenco.app.TraceServiceImpl;
 import com.revenco.daemonsdk.Constant;
 import com.revenco.daemonsdk.java.services.WatchDogService;
 
-/**
- * 主要接受SDK内部的广播，以方便唤醒具体的业务服务对象
- */
 public class WakeUpReceiver extends BroadcastReceiver {
     private static final String TAG = "WakeUpReceiver";
 

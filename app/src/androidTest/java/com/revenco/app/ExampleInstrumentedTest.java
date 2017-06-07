@@ -1,4 +1,4 @@
-package com.revenco.daemon_simple;
+package com.revenco.app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -20,6 +20,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("com.revenco.daemon_simple", appContext.getPackageName());
+        assertEquals("com.revenco.app", appContext.getPackageName());
     }
 }

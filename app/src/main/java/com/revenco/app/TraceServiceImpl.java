@@ -1,4 +1,4 @@
-package com.revenco.daemon_simple;
+package com.revenco.app;
 
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,9 +12,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-/**
- * 业务核心服务
- */
 public class TraceServiceImpl extends AbsWorkService {
     //是否 任务完成, 不再需要服务运行?
     public static boolean sShouldStopService;

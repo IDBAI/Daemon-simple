@@ -1,4 +1,4 @@
-package org.rome.android.ipp.binder;
+package com.otherService;
 
 import android.app.Service;
 import android.content.Intent;
@@ -9,13 +9,10 @@ import android.text.TextUtils;
 import com.revenco.daemonsdk.DaemonManager;
 import com.revenco.daemonsdk.utils.XLog;
 
-/**
- * 阿里系列的隐式唤醒服务
- */
-public class IppService extends Service {
-    private static final String TAG = "IppService";
+public class AgooService extends Service {
+    private static final String TAG = "AgooService";
 
-    public IppService() {
+    public AgooService() {
     }
 
     @Override
@@ -32,10 +29,13 @@ public class IppService extends Service {
     }
 
     private void send(Intent intent) {
-        String log = "伪造 IppService ，发送自定义广播";
+        String log = "伪造淘宝 AgooService ，发送自定义广播";
         if (intent != null && !TextUtils.isEmpty(intent.getAction()))
             log += " , ACTION = " + intent.getAction();
         XLog.log2Sdcard(TAG, log);
         DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
     }
+
+
+
 }

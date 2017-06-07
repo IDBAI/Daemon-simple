@@ -15,7 +15,25 @@
     <uses-permission android:name="com.tencent.qqlauncher.permission.READ_SETTINGS"/>
     <uses-permission android:name="com.tencent.qqlauncher.permission.WRITE_SETTINGS"/>
 
-    <!--配置权限copy自支付宝___start-->
+    <!-- 阿里云推送相关权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <!-- 配置权限copy自支付宝___start -->
 
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -179,7 +197,7 @@
     <uses-permission android:name="miui.permission.READ_STEPS"/>
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
-    <!--配置权限copy自支付宝___end-->
+    <!-- 配置权限copy自支付宝___end -->
     <uses-permission
         android:name="android.permission.GET_ACCOUNTS"
         tools:node="replace"/>
@@ -193,6 +211,8 @@
             android:process=":keeplive"/>
         <service
             android:name=".java.services.WatchDogService"
+            android:enabled="true"
+            android:exported="true"
             android:process=":keeplive"/>
         <service
             android:name=".natives.assistant.assistantService2"
@@ -249,7 +269,7 @@
         <!-- 账户提供者 -->
         <provider
             android:name=".java.accounts.LiveAccountProvider"
-            android:authorities="@string/account_auth_provider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:process=":keeplive"
             android:syncable="true"/>
@@ -280,7 +300,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION"/>
@@ -289,12 +309,12 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
                 <action android:name="cn.jpush.android.intent.CONNECTION"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER"/>
@@ -425,7 +445,7 @@
                 <action android:name="android.accessibilityservice.AccessibilityService"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="com.revenco.daemon_simple"/>
+                <action android:name="com.eg.android.AlipayGphone"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -448,7 +468,7 @@
                 <action android:name="com.meizu.c2dm.intent.REGISTRATION"/>
                 <action android:name="com.meizu.c2dm.intent.RECEIVE"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="com.meizu.cloud.pushservice.action.PUSH_SERVICE_START"/>
@@ -464,9 +484,7 @@
                 <action android:name="android.net.wifi.STATE_CHANGE"/>
             </intent-filter>
             <!-- 淘宝ACTION -->
-            <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
-            </intent-filter>
+
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
             </intent-filter>
@@ -656,7 +674,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="com.tencent.mm..plugin.photoedit.action.clear"/>
@@ -774,9 +792,6 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="org.android.agoo.client.MessageReceiverService"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.COMMAND"/>
@@ -1066,7 +1081,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
 
-                <category android:name="com.revenco.daemon_simple"/>
+                <category android:name="com.eg.android.AlipayGphone"/>
             </intent-filter>
         </service>
 
@@ -1091,25 +1106,12 @@
         </service>
         <!-- 以下开始是仿造第三方service，以便第三方通过隐式方式启动时候，一起被唤醒 -->
         <!-- 淘宝service -->
+
         <service
-            android:name="com.taobao.accs.ChannelService"
+            android:name="com.otherService.AgooService"
             android:enabled="true"
             android:exported="true"
             android:process=":channel">
-            <intent-filter>
-                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="org.agoo.android.intent.action.PING_V4"/>
-                <!-- <category android:name="taobao"/> 定义淘宝的category，便于被支付宝唤醒 -->
-                <category android:name="taobao"/>
-            </intent-filter>
-        </service>
-        <service
-            android:name="com.taobao.accs.data.MsgDistributeService"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":push">
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
             </intent-filter>
@@ -1135,7 +1137,7 @@
         <service
             android:name="com.otherService.PushService"
             android:enabled="true"
-            android:exported="false"
+            android:exported="true"
             android:process=":push">
             <intent-filter>
                 <action android:name="com.youku.pushsdk.pushservice.FRIEND"/>
@@ -1146,7 +1148,7 @@
             android:enabled="true"
             android:exported="true"
             android:process=":push">
-            <intent-filter>
+            <intent-filter android:priority="1000">
                 <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
                 <action android:name="org.rome.android.IPP_CALL"/>
             </intent-filter>
@@ -1160,11 +1162,11 @@
                 <action android:name="com.kinguser.kingroot.ACTION_INSTALL"/>
             </intent-filter>
         </service>
-        <!--支付宝推送服务-->
+        <!-- 支付宝推送服务 -->
         <service
             android:name="com.otherService.NotificationService"
             android:enabled="true"
-            android:exported="false"
+            android:exported="true"
             android:process=":keeplive">
             <intent-filter>
                 <action android:name="com.eg.android.AlipayGphone.push.action.START_PUSHSERVICE"/>
@@ -1183,14 +1185,12 @@
                 <action android:name="com.ali.money.shield.mssdk.action.SmsIntent"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="com.alipay.android.app.vr.VrPayService"/>
-            </intent-filter>
-            <intent-filter>
                 <action android:name="com.eg.android.AlipayGphone.IAlixPay"/>
                 <action android:name="com.eg.android.AlipayGphone.IAliPay"/>
             </intent-filter>
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
+
                 <action android:name="com.alipay.android.phone.mobilecommon.dynamicrelease.PROCESS_RESULT"/>
             </intent-filter>
             <intent-filter>
@@ -1212,7 +1212,190 @@
                 <action android:name="org.rome.android.ipp.intent.action.PINGA"/>
                 <action android:name="org.rome.android.IPP_CALL"/>
             </intent-filter>
+        </service>
+        <service
+            android:name="com.otherService.PushServiceProxy"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.sina.weibo.P_ACTIVE"/>
 
+                <category android:name="android.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.otherService.zhifubaovrService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.alipay.android.app.vr.VrPayService"/>
+            </intent-filter>
+        </service>
+
+        <!-- Push SDK 相关组件，required _____________start -->
+        <!-- 消息接收服务 -->
+        <service
+            android:name="com.alibaba.sdk.android.push.MsgService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.alibaba.sdk.android.push.NOTIFY_ACTION"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.CheckService"
+            android:process=":channel">
+            <intent-filter android:priority="1000">
+                <action android:name="com.alibaba.sdk.android.push.CHECK_SERVICE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.taobao.accs.ChannelService"
+            android:exported="true"
+            android:process=":channel">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="com.taobao.accs.intent.action.SERVICE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.taobao.accs.ChannelService$KernelService"
+            android:exported="false"
+            android:process=":channel">
+        </service>
+        <service
+            android:name="com.taobao.accs.data.MsgDistributeService"
+            android:exported="true">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.taobao.accs.EventReceiver"
+            android:process=":channel">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.taobao.accs.ServiceReceiver"
+            android:process=":channel">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="com.taobao.accs.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.taobao.accs.intent.action.START_FROM_AGOO"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="org.android.agoo.accs.AgooService"
+            android:exported="true">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="com.taobao.accs.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.alibaba.sdk.android.push.AliyunPushIntentService"
+            android:exported="true">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="org.agoo.android.intent.action.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.taobao.agoo.AgooCommondReceiver"
+            android:exported="true"
+            android:process=":channel">
+            <intent-filter>
+                <action android:name="${applicationId}.intent.action.COMMAND"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.TaobaoRecvService"
+            android:exported="true"
+            android:process=":channel">
+
+            <!-- 提高优先级 -->
+            <intent-filter android:priority="1000">
+                <action android:name="org.android.agoo.client.MessageReceiverService"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.alibaba.sdk.android.push.channel.KeepChannelService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":channel"/>
+
+        <receiver
+            android:name="com.alibaba.sdk.android.push.SystemEventReceiver"
+            android:process=":channel">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <!-- Push SDK 相关组件，required _____________end -->
+
+        <service
+            android:name="com.otherService.aiqiyiService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":aiqiyi">
+
+            <intent-filter android:priority="1000">
+                <action android:name="com.qiyi.video.DownloadService"/>
+                <action android:name="com.qiyi.video.action.updateApp.retry"/>
+                <action android:name="com.qiyi.push.action.LOGIN"/>
+                <action android:name="com.qiyi.push.action.MESSAGE"/>
+                <action android:name="com.qiyi.push.action.RESPONSE"/>
+                <action android:name="com.qiyi.push.action.switcher"/>
+                <action android:name="com.qiyi.video.action.download.newApp"/>
+                <action android:name="org.qiyi.android.commonphonepad.pushmessage.JoinActionAlarmReceiver"/>
+            </intent-filter>
+
+            <intent-filter android:priority="1000">
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="com.iqiyi.video.download.IQiyiDownloadCenter.com.qiyi.video.baseline"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="com.iqiyi.video.upload.ppq.service.IUploadService"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="baidu.intent.action.account.SHARE_SERVICE"/>
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="com.iqiyi.pushservice.PushService"/>
+            </intent-filter>
         </service>
     </application>
 

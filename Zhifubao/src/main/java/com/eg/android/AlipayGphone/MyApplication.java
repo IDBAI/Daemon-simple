@@ -1,4 +1,4 @@
-package com.revenco.daemon_simple;
+package com.eg.android.AlipayGphone;
 
 import android.app.Application;
 import android.content.Context;
@@ -21,7 +21,7 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
         //主要的业务逻辑进程
-        String processName = "com.revenco.daemon_simple:business";
+        String processName = "com.eg.android.AlipayGphone:business";
         String serviceName = TraceServiceImpl.class.getCanonicalName();
         String receiveName = assistantReceiver1.class.getCanonicalName();
         DaemonManager.INSTANCE.init(context, processName, serviceName, receiveName);

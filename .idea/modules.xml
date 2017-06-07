@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Daemon-simple.iml" filepath="$PROJECT_DIR$/Daemon-simple.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zhifubao/Zhifubao.iml" filepath="$PROJECT_DIR$/Zhifubao/Zhifubao.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/daemonsdk/daemonsdk.iml" filepath="$PROJECT_DIR$/daemonsdk/daemonsdk.iml" />
     </modules>
