@@ -1,4 +1,4 @@
-package com.eg.android.AlipayGphone;
+package com.eg.android.AlipayGphone.wakeup;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

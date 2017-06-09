@@ -26,7 +26,7 @@
             android:process=":business"/>
 
         <receiver
-            android:name=".assistantReceiver1"
+            android:name=".wakeup.assistantReceiver1"
             android:enabled="true"
             android:exported="true"
             android:process=":business">
