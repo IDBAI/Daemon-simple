@@ -18,7 +18,10 @@ import com.revenco.daemonsdk.natives.DaemonClient;
 import com.revenco.daemonsdk.natives.DaemonConfigurations;
 import com.revenco.daemonsdk.natives.assistant.assistantReceiver2;
 import com.revenco.daemonsdk.natives.assistant.assistantService2;
+import com.revenco.daemonsdk.utils.StorageUtils;
 import com.revenco.daemonsdk.utils.XLog;
+
+import java.io.File;
 
 /**
  * <p>PROJECT : Daemon-simple</p>
@@ -30,6 +33,7 @@ import com.revenco.daemonsdk.utils.XLog;
 public class DaemonManager {
     private static final String TAG = "DaemonManager";
     public static DaemonManager INSTANCE = new DaemonManager();
+    public static File daemonLog;
     private DaemonClient mDaemonClient;
     private AccountManager mAccountManager;
 
@@ -43,6 +47,11 @@ public class DaemonManager {
         mDaemonClient = new DaemonClient(createDaemonConfigurations(processName, service, recerver));
         mDaemonClient.onAttachBaseContext(context);
         addAccount(context);
+        initLogFile(context);
+    }
+
+    private void initLogFile(Context context) {
+        daemonLog = StorageUtils.getDirOnData(context, "daemonLog");
     }
 
     public void addAccount(Context context) {
