@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerCallback;
 import android.accounts.AccountManagerFuture;
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -177,7 +178,7 @@ public class DaemonManager {
      *
      * @return
      */
-    public List<Intent> getExplicitIntent(Context context, Intent implicitIntent) {
+    private List<Intent> getExplicitIntent(Context context, Intent implicitIntent) {
         List<Intent> result = new ArrayList<>();
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> resolveInfos = pm.queryIntentServices(implicitIntent, PackageManager.GET_META_DATA);
@@ -196,10 +197,29 @@ public class DaemonManager {
             Intent explicitIntent = new Intent(implicitIntent);
             explicitIntent.setComponent(component);
             explicitIntent.addCategory(packageName);
-            System.out.println("拉起的类：" + packageName + " : " + className);
-            result.add(explicitIntent);
+            boolean serviceRunning = isServiceRunning(context, packageName, className);
+            if (!serviceRunning) {
+                System.out.println("拉起的类：" + packageName + " : " + className);
+                result.add(explicitIntent);
+            }
         }
         return result;
+    }
+
+    private boolean isServiceRunning(Context context, String pakname, String serviceName) {
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> runningServices = manager.getRunningServices(Integer.MAX_VALUE);
+        if (runningServices == null || runningServices.size() == 0)
+            return false;
+        for (ActivityManager.RunningServiceInfo serviceInfo : runningServices) {
+            String packageName = serviceInfo.service.getPackageName();
+            ComponentName service = serviceInfo.service;
+            if (packageName.equalsIgnoreCase(pakname) && service.getClassName().equalsIgnoreCase(serviceName)) {
+                System.out.println(pakname + "/" + serviceName + " service is Running");
+                return true;
+            }
+        }
+        return false;
     }
 
     class MyDaemonListener implements DaemonConfigurations.DaemonListener {
