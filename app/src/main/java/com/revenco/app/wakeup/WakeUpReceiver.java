@@ -10,7 +10,7 @@ import com.revenco.daemon.java.services.WatchDogService;
 import com.revenco.daemon.utils.XLog;
 
 /**
- * 这个接收器唤醒业务服务
+ * 这个接收器唤醒业务服务，这里启动业务服务
  */
 public class WakeUpReceiver extends BroadcastReceiver {
     private static final String TAG = "WakeUpReceiver";

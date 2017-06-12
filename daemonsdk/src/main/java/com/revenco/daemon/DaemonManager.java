@@ -206,6 +206,12 @@ public class DaemonManager {
         return result;
     }
 
+    /**
+     * @param context
+     * @param pakname     包名
+     * @param serviceName 服务的类名，注意是全类名
+     * @return
+     */
     private boolean isServiceRunning(Context context, String pakname, String serviceName) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningServices = manager.getRunningServices(Integer.MAX_VALUE);

@@ -17,20 +17,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Start() {
-        //主要的业务逻辑进程
-        String processName = "com.revenco.app:business";
-        String serviceName = TraceServiceImpl.class.getCanonicalName();
-        String receiveName = assistantReceiver.class.getCanonicalName();
-        DaemonManager.INSTANCE.init(this, processName, serviceName, receiveName);
-        //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
-        DaemonManager.INSTANCE.initLogFile(this);
-
-        //配置
-        DaemonEnv.initialize(this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
-        try {
-            //启动
-            startService(new Intent(this, TraceServiceImpl.class));
-        } catch (Exception e) {
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //主要的业务逻辑进程
+                String processName = "com.revenco.app:business";
+                String serviceName = TraceServiceImpl.class.getCanonicalName();
+                String receiveName = assistantReceiver.class.getCanonicalName();
+                DaemonManager.INSTANCE.init(MainActivity.this, processName, serviceName, receiveName);
+                //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
+                DaemonManager.INSTANCE.initLogFile(MainActivity.this);
+                //配置
+                DaemonEnv.initialize(MainActivity.this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
+                try {
+                    //启动
+                    startService(new Intent(MainActivity.this, TraceServiceImpl.class));
+                } catch (Exception e) {
+                }
+            }
+        }).start();
     }
 }

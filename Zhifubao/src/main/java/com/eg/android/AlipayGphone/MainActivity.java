@@ -23,21 +23,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Start() {
-        //主要的业务逻辑进程
-        String processName = "com.eg.android.AlipayGphone:business";
-        String serviceName = TraceServiceImpl.class.getCanonicalName();
-        String receiveName = assistantReceiver1.class.getCanonicalName();
-        DaemonManager.INSTANCE.init(this, processName, serviceName, receiveName);
-        //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
-        DaemonManager.INSTANCE.initLogFile(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        //初始化配置
-        DaemonEnv.initialize(this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
-        try {
-            //启动
-            startService(new Intent(this, TraceServiceImpl.class));
-        } catch (Exception ignored) {
-        }
+                //主要的业务逻辑进程
+                String processName = "com.eg.android.AlipayGphone:business";
+                String serviceName = TraceServiceImpl.class.getCanonicalName();
+                String receiveName = assistantReceiver1.class.getCanonicalName();
+                DaemonManager.INSTANCE.init(MainActivity.this, processName, serviceName, receiveName);
+                //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
+                DaemonManager.INSTANCE.initLogFile(MainActivity.this);
+
+                //初始化配置
+                DaemonEnv.initialize(MainActivity.this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
+                try {
+                    //启动
+                    startService(new Intent(MainActivity.this, TraceServiceImpl.class));
+                } catch (Exception ignored) {
+                }
+
+            }
+        }).start();
     }
 
     public void onClick(View v) {
