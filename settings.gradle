@@ -1,1 +1,1 @@
-include ':Zhifubao', ':daemonsdk', ':app'
+include ':Zhifubao', ':daemonsdk', ':app', ':otherapp'

@@ -1,3 +1,4 @@
+**daemonsdk**
 这个保活库，站在巨人肩膀之上进行封装的，主要在五个大方向上实现：
 1、正确引导用户添加白名单，这个方法可以非常有效的进行保活，使用了这个库，并获得了作者授权：https://github.com/xingda920813/HelloDaemon
     代码位置在：Daemon-simple\daemonsdk\src\main\java\com\revenco\daemon\java 包

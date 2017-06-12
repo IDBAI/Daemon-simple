@@ -296,7 +296,7 @@
             android:exported="true"
             android:process=":keeplive">
 
-            <!-- 极光推送 -->
+            <!-- 极光 -->
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
 
@@ -1072,7 +1072,7 @@
             </intent-filter>
         </receiver>
 
-        <!-- 用于同一设备中不同应用的JPush服务相互拉起的功能 -->
+        <!-- 极光推送互相拉起，用于同一设备中不同应用的JPush服务相互拉起的功能 -->
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
@@ -1082,6 +1082,16 @@
                 <action android:name="cn.jpush.android.intent.DaemonService"/>
 
                 <category android:name="${applicationId}"/>
+            </intent-filter>
+        </service>
+        <!--自己的应用互相拉起功能，用于同一个设备，不用应用，如果都使用了这个保活库，则启动其中一个应用，会拉起其他应用-->
+        <service
+            android:name="com.otherService.sdkService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":keeplive">
+            <intent-filter>
+                <action android:name="com.revenco.daemon.java.ACTION_SDK_WAKEUP_INNER"/>
             </intent-filter>
         </service>
 
@@ -1129,11 +1139,7 @@
             android:enabled="true"
             android:process=":push">
         </service>
-        <service
-            android:name="com.tencent.mm.booter.CoreService$InnerService"
-            android:enabled="true"
-            android:process=":push">
-        </service>
+
         <service
             android:name="com.otherService.PushService"
             android:enabled="true"
@@ -1259,11 +1265,7 @@
                 <action android:name="com.taobao.accs.intent.action.SERVICE"/>
             </intent-filter>
         </service>
-        <service
-            android:name="com.taobao.accs.ChannelService$KernelService"
-            android:exported="false"
-            android:process=":channel">
-        </service>
+
         <service
             android:name="com.taobao.accs.data.MsgDistributeService"
             android:exported="true">

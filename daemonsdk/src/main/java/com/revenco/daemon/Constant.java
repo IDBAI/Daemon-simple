@@ -13,4 +13,8 @@ public class Constant {
      * 更多的方式发送的广播ACTION，实现唤醒
      */
     public static final String ACTION_WAKE_UP_BY_MORE_METHOD = "com.revenco.daemon.java.ACTION_WAKE_UP_BY_MORE_METHOD";
+    /**
+     *  <!--自己的应用互相拉起功能，用于同一个设备，不用应用，如果都使用了这个保活库，则启动其中一个应用，会拉起其他应用-->
+     */
+    public static final String ACTION_SDK_WAKEUP_INNER = "com.revenco.daemon.java.ACTION_SDK_WAKEUP_INNER";
 }

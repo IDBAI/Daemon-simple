@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/Zhifubao" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/daemonsdk" />
+            <option value="$PROJECT_DIR$/otherapp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
