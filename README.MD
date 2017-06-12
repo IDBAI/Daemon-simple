@@ -1,4 +1,4 @@
-# daemonsdk   
+# daemonsdk Android保活库
 ######这个保活库，站在巨人肩膀之上进行封装的，主要在五个大方向上实现：  
 ###1、
 正确引导用户添加白名单，这个方法可以非常有效的进行保活，使用了这个库，并获得了作者授权：https://github.com/xingda920813/HelloDaemon  
@@ -127,7 +127,7 @@ compile 'com.idba:daemonsdk:1.0'
 	WakeUpReceiver 类:
 	
 	/**
- 	* 这个接收器唤醒业务服务，这里启动业务服务
+ 	* 这个接收器唤醒业务服务，这里唤醒业务服务
  	*/
 	public class WakeUpReceiver extends BroadcastReceiver {
     private static final String TAG = "WakeUpReceiver";
@@ -147,7 +147,7 @@ compile 'com.idba:daemonsdk:1.0'
 	        }
 	    }
 	}
-
+##测试案例
 
 ##联系方式
 	radio.ysh@qq.com
