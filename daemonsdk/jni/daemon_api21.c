@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 #include <sys/inotify.h>
 
-#include "com_revenco_daemonsdk_natives_nativ_NativeDaemonAPI21.h"
+#include "com_revenco_daemon_natives_nativ_NativeDaemonAPI21.h"
 #include "log.h"
 #include "constant.h"
 
