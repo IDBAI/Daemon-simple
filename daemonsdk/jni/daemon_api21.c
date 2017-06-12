@@ -107,7 +107,7 @@ int lock_file(char* lock_file_path){
 }
 
 
-JNIEXPORT void JNICALL Java_com_revenco_daemonsdk_natives_nativ_NativeDaemonAPI21_doDaemon(JNIEnv *env, jobject jobj, jstring indicatorSelfPath, jstring indicatorDaemonPath, jstring observerSelfPath, jstring observerDaemonPath){
+JNIEXPORT void JNICALL Java_com_revenco_daemon_natives_nativ_NativeDaemonAPI21_doDaemon(JNIEnv *env, jobject jobj, jstring indicatorSelfPath, jstring indicatorDaemonPath, jstring observerSelfPath, jstring observerDaemonPath){
 	if(indicatorSelfPath == NULL || indicatorDaemonPath == NULL || observerSelfPath == NULL || observerDaemonPath == NULL){
 		LOGE("parameters cannot be NULL !");
 		return ;
