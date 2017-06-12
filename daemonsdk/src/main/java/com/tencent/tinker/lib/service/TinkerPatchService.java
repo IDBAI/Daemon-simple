@@ -1,43 +1,46 @@
 package com.tencent.tinker.lib.service;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
+import com.otherService.BaseService;
 
-import com.revenco.daemonsdk.DaemonManager;
-import com.revenco.daemonsdk.utils.XLog;
-
-public class TinkerPatchService extends Service {
-    private static final String TAG = "TinkerPatchService";
-
-    public TinkerPatchService() {
-    }
-
+public class TinkerPatchService extends BaseService {
     @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public String getServieName() {
+        return getClass().getSimpleName();
     }
+//    private static final String TAG = "TinkerPatchService";
+//
+//    public TinkerPatchService() {
+//    }
+//
+//    @Override
+//    public IBinder onBind(Intent intent) {
+//        return null;
+//    }
+//
+//    @Override
+//    public int onStartCommand(Intent intent, int flags, int startId) {
+//        XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService ");
+//        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
+//        return super.onStartCommand(intent, flags, startId);
+//    }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService ");
-        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    public class InnerService extends Service {
-        @Nullable
+    public class InnerService extends BaseService {
         @Override
-        public IBinder onBind(Intent intent) {
-            return null;
+        public String getServieName() {
+            return getClass().getSimpleName();
         }
-
-        @Override
-        public int onStartCommand(Intent intent, int flags, int startId) {
-            XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService $ InnerService ");
-            DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
-            return super.onStartCommand(intent, flags, startId);
-        }
+//
+//        @Nullable
+//        @Override
+//        public IBinder onBind(Intent intent) {
+//            return null;
+//        }
+//
+//        @Override
+//        public int onStartCommand(Intent intent, int flags, int startId) {
+//            XLog.log2Sdcard(TAG, "onStartCommand() called 仿造微信 —> TinkerPatchService $ InnerService ");
+//            DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
+//            return super.onStartCommand(intent, flags, startId);
+//        }
     }
 }

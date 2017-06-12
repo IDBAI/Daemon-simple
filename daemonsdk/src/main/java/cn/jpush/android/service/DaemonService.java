@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.revenco.daemonsdk.DaemonManager;
-import com.revenco.daemonsdk.utils.XLog;
+import com.revenco.daemon.DaemonManager;
+import com.revenco.daemon.utils.XLog;
 
 /**
  * java.lang.RuntimeException: Unable to instantiate service cn.jpush.android.service.DaemonService:

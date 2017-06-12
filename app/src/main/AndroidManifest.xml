@@ -3,8 +3,8 @@
           package="com.revenco.app">
 
     <application
-        android:allowBackup="true"
         android:name=".MyApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -17,20 +17,21 @@
             </intent-filter>
         </activity>
 
-
+        <!--下面的辅助接收器和核心业务服务必须配置在同一个进程中______________start-->
         <receiver
             android:name=".wakeup.assistantReceiver"
             android:enabled="true"
-            android:process=":business"
-            android:exported="true">
+            android:exported="true"
+            android:process=":business">
         </receiver>
 
         <service
             android:name=".TraceServiceImpl"
             android:enabled="true"
-            android:process=":business"
-            android:exported="true">
+            android:exported="true"
+            android:process=":business">
         </service>
+        <!--下面的辅助接收器和核心业务服务必须配置在同一个进程中______________end-->
 
         <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________start-->
         <receiver
@@ -38,13 +39,12 @@
             android:process=":watch">
             <intent-filter>
                 <!--用于取消服务工作,定义在SDK内部-->
-                <action android:name="com.revenco.daemonsdk.java.CANCEL_JOB_ALARM_SUB"/>
+                <action android:name="com.revenco.daemon.java.CANCEL_JOB_ALARM_SUB"/>
                 <!--更加多的唤醒方式，在SDK内部实现，然后外发这个ACTION广播，实现唤醒-->
-                <action android:name="com.revenco.daemonsdk.java.ACTION_WAKE_UP_BY_MORE_METHOD"/>
+                <action android:name="com.revenco.daemon.java.ACTION_WAKE_UP_BY_MORE_METHOD"/>
             </intent-filter>
         </receiver>
         <!--唤醒接收器必须在application模块，只需要定义两个SDK内部的ACTION即可，便于唤醒 业务服务_________end-->
-
 
 
     </application>

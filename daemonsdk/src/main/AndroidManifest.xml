@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.revenco.daemonsdk">
+          package="com.revenco.daemon">
 
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
@@ -204,32 +204,32 @@
 
     <application android:label="@string/app_name">
         <service
-            android:name=".java.services.JobSchedulerService"
+            android:name="com.revenco.daemon.java.services.JobSchedulerService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:process=":keeplive"/>
         <service
-            android:name=".java.services.WatchDogService"
+            android:name="com.revenco.daemon.java.services.WatchDogService"
             android:enabled="true"
             android:exported="true"
             android:process=":keeplive"/>
         <service
-            android:name=".natives.assistant.assistantService2"
+            android:name="com.revenco.daemon.natives.assistant.assistantService2"
             android:enabled="true"
             android:exported="true"
             android:process=":keeplive">
         </service>
 
         <receiver
-            android:name=".natives.assistant.assistantReceiver2"
+            android:name="com.revenco.daemon.natives.assistant.assistantReceiver2"
             android:enabled="true"
             android:exported="true"
             android:process=":keeplive">
         </receiver>
         <!-- android:excludeFromRecents="true"，设置为true后，当用户按了“最近任务列表”时候，该Task不会出现在最近任务列表中，可达到隐藏应用的目的。 -->
         <activity
-            android:name=".java.activitys.TransParentActivity"
+            android:name="com.revenco.daemon.java.activitys.TransParentActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnTaskLaunch="false"
@@ -238,13 +238,13 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
         </activity>
         <activity
-            android:name=".java.accounts.AuthenticatorActivity"
+            android:name="com.revenco.daemon.java.accounts.AuthenticatorActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!-- 通知服务，可以提升app的前台级别 -->
         <service
-            android:name=".java.notifys.NotificationMonitor"
+            android:name="com.revenco.daemon.java.notifys.NotificationMonitor"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
@@ -255,7 +255,7 @@
         </service>
         <!-- 同步服务 -->
         <service
-            android:name=".java.accounts.LiveSyncService"
+            android:name="com.revenco.daemon.java.accounts.LiveSyncService"
             android:exported="true"
             android:process=":keeplive">
             <intent-filter>
@@ -268,7 +268,7 @@
         </service>
         <!-- 账户提供者 -->
         <provider
-            android:name=".java.accounts.LiveAccountProvider"
+            android:name="com.revenco.daemon.java.accounts.LiveAccountProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:process=":keeplive"
@@ -276,7 +276,7 @@
 
         <!-- 账户服务 -->
         <service
-            android:name=".java.accounts.LiveAccountService"
+            android:name="com.revenco.daemon.java.accounts.LiveAccountService"
             android:enabled="true"
             android:exported="true"
             android:process=":keeplive">
@@ -291,7 +291,7 @@
 
         <!-- 这里添加第三方推送\ACTION广播 -->
         <receiver
-            android:name=".java.other.OtherPushReceiver"
+            android:name="com.revenco.daemon.java.other.OtherPushReceiver"
             android:enabled="true"
             android:exported="true"
             android:process=":keeplive">

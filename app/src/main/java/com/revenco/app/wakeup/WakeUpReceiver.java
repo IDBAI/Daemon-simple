@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.revenco.app.TraceServiceImpl;
-import com.revenco.daemonsdk.Constant;
-import com.revenco.daemonsdk.java.services.WatchDogService;
-import com.revenco.daemonsdk.utils.XLog;
+import com.revenco.daemon.Constant;
+import com.revenco.daemon.java.services.WatchDogService;
+import com.revenco.daemon.utils.XLog;
 
+/**
+ * 这个接收器唤醒业务服务
+ */
 public class WakeUpReceiver extends BroadcastReceiver {
     private static final String TAG = "WakeUpReceiver";
 
@@ -20,7 +23,6 @@ public class WakeUpReceiver extends BroadcastReceiver {
         }
         //动态注册屏幕解锁开锁ACTION，等等以及自定义的其他广播，以唤醒app
         try {
-
             XLog.log2Sdcard(TAG, "ACTION =  " + intent.getAction() + " --> 唤醒业务服务！");
             context.startService(new Intent(context, TraceServiceImpl.class));
         } catch (Exception e) {

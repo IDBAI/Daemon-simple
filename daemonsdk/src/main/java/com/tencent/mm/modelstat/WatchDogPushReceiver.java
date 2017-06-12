@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.revenco.daemonsdk.DaemonManager;
-import com.revenco.daemonsdk.utils.XLog;
+import com.revenco.daemon.DaemonManager;
+import com.revenco.daemon.utils.XLog;
 
 public class WatchDogPushReceiver extends BroadcastReceiver {
     private static final String TAG = "WatchDogPushReceiver";

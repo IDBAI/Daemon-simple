@@ -1,13 +1,6 @@
 package com.alibaba.sdk.android.push;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
-
-import com.revenco.daemonsdk.DaemonManager;
-import com.revenco.daemonsdk.utils.XLog;
+import com.otherService.BaseService;
 
 /**
  * <p>PROJECT : Daemon-simple</p>
@@ -16,27 +9,32 @@ import com.revenco.daemonsdk.utils.XLog;
  * <p>CLASS DESCRIBE :</p>
  * <p>CLASS_VERSION : 1.0.0</p>
  */
-public class AliyunPushIntentService extends Service {
-    private static final String TAG = "AliyunPushIntentService";
-
+public class AliyunPushIntentService extends BaseService {
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        send(intent);
-        return super.onStartCommand(intent, flags, startId);
+    public String getServieName() {
+        return getClass().getSimpleName();
     }
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        send(intent);
-        return null;
-    }
-
-    private void send(Intent intent) {
-        String log = "伪造 AliyunPushIntentService ，发送自定义广播";
-        if (intent != null && !TextUtils.isEmpty(intent.getAction()))
-            log += " , ACTION = " + intent.getAction();
-        XLog.log2Sdcard(TAG, log);
-        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
-    }
+//    private static final String TAG = "AliyunPushIntentService";
+//
+//    @Override
+//    public int onStartCommand(Intent intent, int flags, int startId) {
+//        send(intent);
+//        return super.onStartCommand(intent, flags, startId);
+//    }
+//
+//    @Nullable
+//    @Override
+//    public IBinder onBind(Intent intent) {
+//        send(intent);
+//        return null;
+//    }
+//
+//    private void send(Intent intent) {
+//        String logStr = "伪造 AliyunPushIntentService ，发送自定义广播";
+//        if (intent != null && !TextUtils.isEmpty(intent.getAction()))
+//            logStr += " , ACTION = " + intent.getAction();
+//        XLog.log2Sdcard(TAG, logStr);
+//        DaemonManager.INSTANCE.SendSDKWakeUpBroadcast(getApplicationContext(), intent);
+//    }
 }

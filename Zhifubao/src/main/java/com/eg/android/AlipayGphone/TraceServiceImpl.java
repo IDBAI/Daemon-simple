@@ -3,7 +3,7 @@ package com.eg.android.AlipayGphone;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.revenco.daemonsdk.java.services.AbsWorkService;
+import com.revenco.daemon.java.services.AbsWorkService;
 
 import java.util.concurrent.TimeUnit;
 

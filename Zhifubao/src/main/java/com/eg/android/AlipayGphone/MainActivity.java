@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.revenco.daemonsdk.java.notifys.NotifyHelper;
-import com.revenco.daemonsdk.java.services.IntentWrapper;
+import com.revenco.daemon.java.notifys.NotifyHelper;
+import com.revenco.daemon.java.services.IntentWrapper;
 
 public class MainActivity extends AppCompatActivity {
     @Override

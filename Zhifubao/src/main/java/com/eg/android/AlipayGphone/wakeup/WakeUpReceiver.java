@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.eg.android.AlipayGphone.TraceServiceImpl;
-import com.revenco.daemonsdk.Constant;
-import com.revenco.daemonsdk.java.services.WatchDogService;
-import com.revenco.daemonsdk.utils.XLog;
+import com.revenco.daemon.Constant;
+import com.revenco.daemon.java.services.WatchDogService;
+import com.revenco.daemon.utils.XLog;
 
 /**
  * 主要接受SDK内部的广播，以方便唤醒具体的业务服务对象

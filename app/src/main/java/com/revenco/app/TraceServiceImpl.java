@@ -3,7 +3,7 @@ package com.revenco.app;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.revenco.daemonsdk.java.services.AbsWorkService;
+import com.revenco.daemon.java.services.AbsWorkService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +12,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
+/**
+ * 这个是核心的业务服务
+ */
 public class TraceServiceImpl extends AbsWorkService {
     //是否 任务完成, 不再需要服务运行?
     public static boolean sShouldStopService;
