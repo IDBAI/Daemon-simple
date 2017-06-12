@@ -1,20 +1,18 @@
-# Daemon-simple
-Daemon service run in Android devices,so that the service will not easy dead.
 # daemonsdk Android保活库
-######这个保活库，站在巨人肩膀之上进行封装的，主要在五个大方向上实现：  
-###1、
+###### 这个保活库，站在巨人肩膀之上进行封装的，主要在五个大方向上实现：  
+### 1、
 正确引导用户添加白名单，这个方法可以非常有效的进行保活，使用了这个库，并获得了作者授权：https://github.com/xingda920813/HelloDaemon  
 代码位置在：Daemon-simple\daemonsdk\src\main\java\com\revenco\daemon\java 包
 
 
-###2、
+### 2、
 native层的暴力监听保活方案，也可以达到较好的效果，但是对于新的机型版本有可能失效，使用了这个库，并获得了作者授权：https://github.com/Marswin/MarsDaemon  
 代码位置在：Daemon-simple\daemonsdk\src\main\java\com\revenco\daemon\natives 包  
-###3、
+### 3、
 添加了一些提高进程优先级的方案，比如不可见的notifycation，锁屏情况下的一个像素透明的activity，账户同步功能  
-###4、
+### 4、
 使用了第三方app开启的唤醒功能，反编译了各大主流的app，添加ACTION配置，仿造他们的service，以便可能被隐式启动  
-###5、
+### 5、
 添加了第三方的推送服务配置，包括极光推送，小米推送，华为推送，信鸽推送，百度推送，个推推送，以便可以在同一个设备上有可能集成相同推送的app启动时候可以唤醒  
 
 ***特性功能***：  
@@ -24,7 +22,7 @@ native层的暴力监听保活方案，也可以达到较好的效果，但是�
 
 
 
-##说明：  
+## 说明：  
 1、引导用户添加白名单的方式，这种方式是最可靠最友好的保活方式，并且不受Android系统版本的限制。
 
 
@@ -41,11 +39,11 @@ native层的暴力监听保活方案，也可以达到较好的效果，但是�
 5、添加第三方推送的配置，仿造一些服务和接收器，可以在一定的程度上唤醒,适用于任何的系统版本，有测试成功案例：启动了集成极光推送的app，可以被唤醒。
 
 
-##集成使用方式：
-####1、使用方式在build.gradle添加如下即可：  
+## 集成使用方式：
+#### 1、使用方式在build.gradle添加如下即可：  
 compile 'com.idba:daemonsdk:1.0'
 
-####2、AndroidManifest.xml 配置如下：
+#### 2、AndroidManifest.xml 配置如下：
 	2.1 配置核心业务Service 和一个 辅助的 receive（注意：必须配置在同一个进程中）
 	<!--下面的辅助接收器和核心业务服务必须配置在同一个进程中______________start-->
         <receiver
@@ -81,7 +79,7 @@ compile 'com.idba:daemonsdk:1.0'
 
 
 
-####3、在MainActivity中实现启动（注意：请不要将这个启动放在自定义的Application中，因为app处于多进程环境，如果将启动代码放在Application中，将会触发多次执行）
+#### 3、在MainActivity中实现启动（注意：请不要将这个启动放在自定义的Application中，因为app处于多进程环境，如果将启动代码放在Application中，将会触发多次执行）
 		
 	
     /**
@@ -109,9 +107,9 @@ compile 'com.idba:daemonsdk:1.0'
         }).start();
     }
 
-####4、TraceServiceImpl 核心业务服务，请继承 AbsWorkService，请参照simple的代码框架，实现自己的业务逻辑。
+#### 4、TraceServiceImpl 核心业务服务，请继承 AbsWorkService，请参照simple的代码框架，实现自己的业务逻辑。
 
-####5、为了统一归类，创建一个wakeup package ,分别创建一个Receive 和 Service，作为Native层保活的辅助类
+#### 5、为了统一归类，创建一个wakeup package ,分别创建一个Receive 和 Service，作为Native层保活的辅助类
 	assistantReceiver 类 ：
 
 	/**
@@ -149,7 +147,7 @@ compile 'com.idba:daemonsdk:1.0'
 	        }
 	    }
 	}
-##测试案例
+## 测试案例
 
-##联系方式
+## 联系方式
 	radio.ysh@qq.com
