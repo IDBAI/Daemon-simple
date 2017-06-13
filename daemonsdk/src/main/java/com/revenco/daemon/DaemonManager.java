@@ -11,11 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import com.otherService.sdkService;
 import com.revenco.daemon.java.accounts.Constants;
 import com.revenco.daemon.java.accounts.LiveAccountProvider;
 import com.revenco.daemon.java.activitys.TransParentActivity;
@@ -51,12 +49,12 @@ public class DaemonManager {
      * @param recerver
      */
     public void init(Context context, String processName, String service, String recerver) {
-        mDaemonClient = new DaemonClient(createDaemonConfigurations(processName, service, recerver));
-        mDaemonClient.onAttachBaseContext(context);
-        addAccount(context);
-        setComponentDefault(context);
-        ///
         try {
+            mDaemonClient = new DaemonClient(createDaemonConfigurations(processName, service, recerver));
+            mDaemonClient.onAttachBaseContext(context);
+            addAccount(context);
+            setComponentDefault(context);
+            ///
             startInnerService(context);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,8 +84,6 @@ public class DaemonManager {
         }
     }
 
-
-
     /**
      * 初始化LOG File 信息，调用的话是默认初始化，非必须
      * 将会开启日志输出控制台，并且 log2Sdcard 方法的日志会写入到SDcard
@@ -96,8 +92,12 @@ public class DaemonManager {
      * @param context
      */
     public void initLogFile(Context context) {
-        String absolutePath = StorageUtils.getDirOnData(context, "daemonLog").getAbsolutePath();
-        XLog.setLogConfig(true, true, absolutePath);
+        try {
+            String absolutePath = StorageUtils.getDirOnData(context, "daemonLog").getAbsolutePath();
+            XLog.setLogConfig(true, true, absolutePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
