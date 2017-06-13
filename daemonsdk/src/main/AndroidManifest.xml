@@ -1093,6 +1093,7 @@
             <intent-filter>
                 <action android:name="com.revenco.daemon.java.ACTION_SDK_WAKEUP_INNER"/>
             </intent-filter>
+
         </service>
 
         <!-- 仿造微信的三个Service，测试被第三方app唤醒 -->

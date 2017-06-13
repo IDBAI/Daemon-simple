@@ -11,9 +11,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ServiceInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.otherService.sdkService;
 import com.revenco.daemon.java.accounts.Constants;
 import com.revenco.daemon.java.accounts.LiveAccountProvider;
 import com.revenco.daemon.java.activitys.TransParentActivity;
@@ -83,6 +85,8 @@ public class DaemonManager {
             context.startService(inte);
         }
     }
+
+
 
     /**
      * 初始化LOG File 信息，调用的话是默认初始化，非必须
@@ -181,7 +185,7 @@ public class DaemonManager {
     private List<Intent> getExplicitIntent(Context context, Intent implicitIntent) {
         List<Intent> result = new ArrayList<>();
         PackageManager pm = context.getPackageManager();
-        List<ResolveInfo> resolveInfos = pm.queryIntentServices(implicitIntent, PackageManager.GET_META_DATA);
+        List<ResolveInfo> resolveInfos = pm.queryIntentServices(implicitIntent, 0);
         // Make sure only one match was found
         if (resolveInfos == null) {
             return result;

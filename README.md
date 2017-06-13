@@ -1,12 +1,12 @@
 # daemonsdk Android保活库
 ###### 这个保活库，站在巨人肩膀之上进行封装的，主要在五个大方向上实现：  
 ### 1、
-正确引导用户添加白名单，这个方法可以非常有效的进行保活，使用了这个库，并获得了作者授权：https://github.com/xingda920813/HelloDaemon  
+正确引导用户添加白名单，这个方法可以非常有效的进行保活，使用了这个库：https://github.com/xingda920813/HelloDaemon
 代码位置在：Daemon-simple\daemonsdk\src\main\java\com\revenco\daemon\java 包
 
 
 ### 2、
-native层的暴力监听保活方案，也可以达到较好的效果，但是对于新的机型版本有可能失效，使用了这个库，并获得了作者授权：https://github.com/Marswin/MarsDaemon  
+native层的暴力监听保活方案，也可以达到较好的效果，但是对于新的机型版本有可能失效，使用了这个库：https://github.com/Marswin/MarsDaemon
 代码位置在：Daemon-simple\daemonsdk\src\main\java\com\revenco\daemon\natives 包  
 ### 3、
 添加了一些提高进程优先级的方案，比如不可见的notifycation，锁屏情况下的一个像素透明的activity，账户同步功能  
@@ -94,8 +94,9 @@ compile 'com.idba:daemonsdk:1.0'
                 String serviceName = TraceServiceImpl.class.getCanonicalName();
                 String receiveName = assistantReceiver.class.getCanonicalName();
                 DaemonManager.INSTANCE.init(MainActivity.this, processName, serviceName, receiveName);
-                //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
-                DaemonManager.INSTANCE.initLogFile(MainActivity.this);
+                if (BuildConfig.DEBUG)
+                      //Debug模式开启控制台LOG日志，部分唤醒日志则会记录到SDCard，方便观察app如何被唤醒的日志
+                      DaemonManager.INSTANCE.initLogFile(MainActivity.this);
                 //配置
                 DaemonEnv.initialize(MainActivity.this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
                 try {
