@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 String serviceName = TraceServiceImpl.class.getCanonicalName();
                 String receiveName = assistantReceiver1.class.getCanonicalName();
                 DaemonManager.INSTANCE.init(MainActivity.this, processName, serviceName, receiveName);
-                //初始化开启LOG日志记录到SDCard，方便观察app如何被唤醒的日志
-                DaemonManager.INSTANCE.initLogFile(MainActivity.this);
+                if (BuildConfig.DEBUG)
+                    //Debug模式开启控制台LOG日志，部分唤醒日志则会记录到SDCard，方便观察app如何被唤醒的日志
+                    DaemonManager.INSTANCE.initLogFile(MainActivity.this);
 
                 //初始化配置
                 DaemonEnv.initialize(MainActivity.this, TraceServiceImpl.class, DaemonEnv.DEFAULT_WAKE_UP_INTERVAL);
