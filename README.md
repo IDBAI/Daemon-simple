@@ -41,7 +41,7 @@ native层的暴力监听保活方案，也可以达到较好的效果，但是�
 
 ## 集成使用方式：
 #### 1、使用方式在build.gradle添加如下即可：  
-compile 'com.idba:daemonsdk:1.0'
+compile 'com.idba:daemonsdk:+'
 
 #### 2、AndroidManifest.xml 配置如下：
 	2.1 配置核心业务Service 和一个 辅助的 receive（注意：必须配置在同一个进程中）
