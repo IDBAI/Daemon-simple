@@ -149,6 +149,8 @@ compile 'com.idba:daemonsdk:+'
 	    }
 	}
 
+#### 6、引导用户添加白名单  
+	IntentWrapper.whiteListMatters(this, "为了确保APP接收消息的实时性，将添加到白名单。");
 
 
 ## 测试案例
